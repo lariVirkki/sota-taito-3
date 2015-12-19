@@ -1,0 +1,8 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix} made by Lari Virkki
+${licensePrefix} pls no copypasterino
+<#if licenseLast??>
+${licenseLast}
+</#if>
