@@ -9,18 +9,18 @@ package gameLogic;
  * @author lari
  */
 public class Ring {
-    static private Node STARTNODE;
+    static private RingNode STARTNODE;
     
-    public Ring(Node start){
+    public Ring(RingNode start){
         STARTNODE=start;
     }
     
-    public Node get(){
+    public RingNode get(){
         return STARTNODE;
     }
     
-    public void add(Node addend){
-        Node node=STARTNODE;
+    public void add(RingNode addend){
+        RingNode node=STARTNODE;
         while (node.right()!=null){
             node=node.right();
         }
@@ -28,7 +28,7 @@ public class Ring {
         addend.setLeft(node);  //...so it's left neighbor is the second newest
     }
     
-    public void addAndClose(Node addend){
+    public void addAndClose(RingNode addend){
         add(addend);
         addend.setRight(STARTNODE);  //the ring is now closed
         STARTNODE.setLeft(addend);
