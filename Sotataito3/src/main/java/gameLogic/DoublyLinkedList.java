@@ -15,7 +15,7 @@ public class DoublyLinkedList {
         FIRST=node;
     }
     
-    public void add(DLLNode addend){  //gets stuck somewhere
+    public void add(DLLNode addend){ 
         DLLNode current=FIRST;
         while (current.getNext()!=null){
             current=current.getNext();
@@ -44,7 +44,9 @@ public class DoublyLinkedList {
         String output="";
         do{
             output=output+node.toString();
+            System.out.println(output);
             if(node.getNext()==null) break;
+            node=node.getNext();
         }while(true);
         return output;
     }
