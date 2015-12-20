@@ -51,6 +51,6 @@ public class DLLNode {
     
     
     public String toString(){
-        return "("+Integer.toString(this.coordinates[0])+" ,"+Integer.toString(this.coordinates[1])+") ";
+        return "("+Integer.toString(this.coordinates[0])+" ,"+Integer.toString(this.coordinates[1])+")";
     }
 }
