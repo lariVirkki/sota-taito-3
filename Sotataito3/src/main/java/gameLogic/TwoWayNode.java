@@ -50,6 +50,7 @@ public class TwoWayNode {
     //----Testing-related
     
     
+    @Override
     public String toString(){
         return "("+Integer.toString(this.coordinates[0])+", "+Integer.toString(this.coordinates[1])+")";
     }

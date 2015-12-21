@@ -15,12 +15,20 @@ public class Main {
      * @param args
      */
     public static void main(String[] args){
-        System.out.println("MOI!!!");
-        TwoWayNode pasi=new TwoWayNode(1,2);
-        TwoWayNode joni=new TwoWayNode(609,13);
-        DoublyLinkedList testilista=new DoublyLinkedList(pasi);
-        System.out.println(testilista.toString());
-        testilista.add(joni);
-        System.out.println(testilista.toString());
+        while(true){
+            isInWorksPositive();
+        }
+    }
+        
+        static void isInWorksPositive(){
+        int bottom=0;
+        int top=100;
+        int left=0;
+        int right=100;
+        Rectangle rec = new Rectangle(top, bottom, left, right);
+        int x=(int) (Math.random()*100.0);
+        int y=(int) (Math.random()*100.0);
+            System.out.println(x+" "+y+" "+rec.isItIn(x, y));
     }
 }
+
