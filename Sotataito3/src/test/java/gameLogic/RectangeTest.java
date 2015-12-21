@@ -41,4 +41,36 @@ public class RectangeTest {
         if (y<50) y=-50;
         junit.extensions.TestSetup.assertEquals( rec.isItIn(x, y), false);
     }
+    
+    @Test
+    public void lineCrossesPositiveY(){  //just to see if [0,0] works as a proper 'false'
+        int top = (int)(Math.random()*1000);
+        int bottom = (int)(Math.random()*1000);
+        int left = (int)(Math.random()*1000);
+        int right = (int)(Math.random()*1000);
+        Rectangle rec= new Rectangle(top,bottom,left,right);
+        int x1=left+(int)(Math.random()*(right-left));
+        int x2=left+(int)(Math.random()*(right-left));
+        int y1=bottom-(int)(Math.random()*100);
+        int y2=top+(int)(Math.random()*100);
+        int[] ayy = new int[2];
+        ayy[0]=0; ayy[1]=0;
+        junit.extensions.TestSetup.assertNotSame(ayy, rec.lineCrosses(x1, y1, x2, y2));  
+    }
+    
+    @Test
+    public void lineCrossesPositiveX(){  //just to see if [0,0] works as a proper 'false'
+        int top = (int)(Math.random()*1000);
+        int bottom = (int)(Math.random()*1000);
+        int left = (int)(Math.random()*1000);
+        int right = (int)(Math.random()*1000);
+        Rectangle rec= new Rectangle(top,bottom,left,right);
+        int y1=bottom+(int)(Math.random()*(right-left));
+        int y2=bottom+(int)(Math.random()*(right-left));
+        int x1=left-(int)(Math.random()*100);
+        int x2=right+(int)(Math.random()*100);
+        int[] ayy = new int[2];
+        ayy[0]=0; ayy[1]=0;
+        junit.extensions.TestSetup.assertNotSame(ayy, rec.lineCrosses(x1, y1, x2, y2));  
+    }
 }
