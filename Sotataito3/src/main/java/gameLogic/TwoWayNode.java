@@ -8,22 +8,22 @@ package gameLogic;
  *
  * @author lari
  */
-public class DLLNode {
+public class TwoWayNode {
     private int[] coordinates;
-    private DLLNode next, previous;
+    private TwoWayNode next, previous;
     
-    public DLLNode(int x, int y){
+    public TwoWayNode(int x, int y){
         coordinates=new int[2];
         coordinates[0]=x;
         coordinates[1]=y;
     }
     
     //------GETTERS
-    public DLLNode getNext(){
+    public TwoWayNode getNext(){
         return this.next;
     }
     
-    public DLLNode getPrevious(){
+    public TwoWayNode getPrevious(){
         return this.previous;
     }
     
@@ -33,17 +33,17 @@ public class DLLNode {
     
     //------SETTERS
     
-    public void setNext(DLLNode future){
+    public void setNext(TwoWayNode future){
         this.next=future;
     }
     
-    public void setPrevious(DLLNode future){
+    public void setPrevious(TwoWayNode future){
         this.previous=future;
     }
     
     //-------EQUALS
     
-    public boolean equals(DLLNode anotherNode){
+    public boolean equals(TwoWayNode anotherNode){
         return (this.coordinates[0]==anotherNode.getCoords()[0]&&this.coordinates[1]==anotherNode.getCoords()[1]);
     }
     

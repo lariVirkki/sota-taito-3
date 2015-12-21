@@ -9,14 +9,14 @@ package gameLogic;
  * @author lari
  */
 public class DoublyLinkedList {
-    private static DLLNode FIRST;
+    private static TwoWayNode FIRST;
     
-    public DoublyLinkedList(DLLNode node){
+    public DoublyLinkedList(TwoWayNode node){
         FIRST=node;
     }
     
-    public void add(DLLNode addend){ 
-        DLLNode current=FIRST;
+    public void add(TwoWayNode addend){ 
+        TwoWayNode current=FIRST;
         while (current.getNext()!=null){
             current=current.getNext();
         }
@@ -24,12 +24,12 @@ public class DoublyLinkedList {
         addend.setPrevious(current); //it's important to make sure the list is doubly linked!!
     }
     
-    public void remove(DLLNode start, DLLNode stop){ //this binds start to stop
-        DLLNode running = FIRST;                     //this goes through the nodes to seek matching ones
+    public void remove(TwoWayNode start, TwoWayNode stop){ //this binds start to stop
+        TwoWayNode running = FIRST;                     //this goes through the nodes to seek matching ones
         while (!running.equals(start)&&running.getNext()!=null){ //no null errors pls
             running=running.getNext();
         }
-        DLLNode node = running; //here it has found a node matching the start of a removal
+        TwoWayNode node = running; //here it has found a node matching the start of a removal
         do {
             running=running.getNext();
         }while (!running.equals(stop)&&running.getNext()!=null); //no null errors
@@ -40,7 +40,7 @@ public class DoublyLinkedList {
     
     @Override
     public String toString(){
-        DLLNode node=FIRST;
+        TwoWayNode node=FIRST;
         String output="";
         do{
             output=output+node.toString();
