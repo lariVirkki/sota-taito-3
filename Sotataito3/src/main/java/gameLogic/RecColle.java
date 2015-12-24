@@ -23,7 +23,7 @@ public class RecColle {
             }
         }
     }
-    
+    /*
     public boolean isItIn(int x, int y){
         for (Rectangle collection1 : collection) { //pretty :3
             if (collection1.isItIn(x, y)) {
@@ -32,6 +32,7 @@ public class RecColle {
         }
         return false;
     }
+    */
     
     public int[] lineCrosses(int startX, int startY, int endX, int endY){
         int[] output = new int[2];
