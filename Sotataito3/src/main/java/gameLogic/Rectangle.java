@@ -9,10 +9,7 @@ package gameLogic;
  * @author lari
  */
 public class Rectangle {
-    private static int TOP;
-    private static int BOTTOM;
-    private static int LEFT;
-    private static int RIGHT;
+    private Line[] theLines;
     
     public Rectangle(int top, int bottom, int left, int right){
         if (top<bottom){  //to make sure something CAN be inside it!
@@ -25,43 +22,32 @@ public class Rectangle {
             right=left;
             left=a;
         }
-        TOP=top;
-        BOTTOM=bottom;
-        LEFT=left;
-        RIGHT=right;
+        theLines=new Line[4]; //in the ordering: TOP, RIGHT, BOTTOM, LEFT
+        theLines[0]=new Line(top,true,left,right); //Line(int level, boolean horizontal, int beginning, int endpoint)
+        theLines[1]=new Line(right,false,bottom,top);
+        theLines[2]=new Line(bottom,true,left,right);
+        theLines[3]=new Line(left,false,bottom,top);
     }
     
+    /*
     public boolean isItIn(int x, int y){
         return (x<TOP&&x>BOTTOM&&y<RIGHT&&y>LEFT); //what this means is that 0,0 is in the bottom left corner of a map
     }
+    */
     
     public int[] lineCrosses(int startX, int startY, int endX, int endY){
-        double k;
-        int [] output=new int[2];
-        int [] left=new int[2];
-        int [] right=new int[2];
-        int [] bottom=new int[2];
-        int [] top=new int[2];
+        int[] output = new int[2];
         output[0]=0; output[1]=0;
-        left[0]=LEFT; left[1]=0;
-        right[0]=RIGHT; right[1]=0;
-        top[0]=0; top[1]=TOP;
-        bottom[0]=0; bottom[1]=BOTTOM;
-        k = ((double) (endY-startY ))/((double)(endX-startX));
-        double b = ((double) startY)-startX*k;
-        if((k*LEFT+b<TOP&&k*LEFT+b>BOTTOM)){
-            left[1]=(int) (k*LEFT+b);
-        }
-        if (k*RIGHT+b<TOP&&k*RIGHT+b>BOTTOM){
-            right[1]=(int) (k*RIGHT+b);
-        }
-        b=-b/k; //y=kx+b -> x=y/k-b/k
-        k=1/k;
-        if((k*BOTTOM+b<RIGHT&&k*BOTTOM+b>LEFT)){
-            bottom[0]=(int) (k*BOTTOM+b);
-        }
-        if (k*TOP+b<RIGHT&&k*TOP+b>LEFT){
-            top[0]=(int) (k*TOP+b);
+        for (int i =0; i<theLines.length; i++){
+            int x=theLines[i].lineCrosses(startX, startY, endX, endY)[0];
+            int y=theLines[i].lineCrosses(startX, startY, endX, endY)[1];
+            if (!(x==0&&y==0)){
+                if(output[0]==0&&output[1]==0){
+                    output[0]=x; output[1]=y;
+                }else if (this.distance(startX, startY, output[0], output[1])>this.distance(startX, startY, x, y)){
+                    output[0]=x; output[1]=y;
+                }
+            }
         }
         return output;
     }
