@@ -41,6 +41,10 @@ public class Map {
         return output;
     }
     
+    public TwoWayNode closestPointInRing(int[] point){
+        
+    }
+    
     public boolean unpathablePoint(int[] point){
         for (int i=0; i<unPathableList.length;i++){
             if(unPathableList[i].isItIn(point)) return true;
