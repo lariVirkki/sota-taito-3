@@ -50,4 +50,18 @@ public class DoublyLinkedList {
         }while(true);
         return output;
     }
+    
+    public int length(){
+        int dist=0;
+        TwoWayNode current=FIRST;
+        while (current.getNext()!=null){
+            dist+=(int) Utility.distance(current.getCoords(), current.getNext().getCoords());
+            current=current.getNext();
+        }
+        return dist;
+    }
+    
+    public TwoWayNode getFirst(){
+        return FIRST;
+    }
 }

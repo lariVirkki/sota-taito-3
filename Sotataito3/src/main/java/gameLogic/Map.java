@@ -14,16 +14,6 @@ public class Map {
 // these index have to match so that ringlist[n] is the ring that surrounds
 // the patch of unpathable terrain reccolle[n]
     
-    public DoublyLinkedList pathing(int[] startPoint, int[] endPoint){
-        int[] addend;
-        TwoWayNode start=new TwoWayNode(startPoint);        //set the starting point, end point, and start constructing the path
-        TwoWayNode goal=new TwoWayNode(startPoint);
-        DoublyLinkedList path=new DoublyLinkedList(start);  // the last command not to be iterated!
-        addend=unPathableInTheWay(startPoint, startPoint);
-        path.add(new TwoWayNode(addend));
-        
-        return path;
-    }
     
     public int[] unPathableInTheWay(int[] startPoint, int[] endPoint){  //sees if there is unpathable terrain between two points in plane, returns 0,0 if none
         int[] output = new int[2];
@@ -41,8 +31,19 @@ public class Map {
         return output;
     }
     
-    public TwoWayNode closestPointInRing(int[] point){
-        
+    
+    public TwoWayNode closestPointInRing(int[] startPoint){
+        int[] output=new int[2];
+        int[] point;
+        for (int i=0; i<ringList.length;i++){
+            point=ringList[i].getClosest(startPoint);
+            if(Utility.isZeroPoint(output)){
+                    output=point;
+            }else if (Utility.distance(startPoint, output)>Utility.distance(startPoint, point)){
+                    output=point;
+            }
+        }
+        return new TwoWayNode(output);
     }
     
     public boolean unpathablePoint(int[] point){
