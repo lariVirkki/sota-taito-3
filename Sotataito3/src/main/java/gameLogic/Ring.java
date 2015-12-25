@@ -33,4 +33,17 @@ public class Ring {
         addend.setNext(STARTNODE);  //the ring is now closed
         STARTNODE.setPrevious(addend);
     }
+    
+    public int[] getClosest(int[] point){
+        TwoWayNode node=STARTNODE;
+        int[] output=node.getCoords();
+        while (true){
+            node=node.getNext(); //incrementation
+            if(Utility.distance(output, point)>Utility.distance(node.getCoords(), point)){
+                output=node.getCoords();
+            }
+            if (node.equals(STARTNODE)){break;}
+        }
+        return output;
+    }
 }

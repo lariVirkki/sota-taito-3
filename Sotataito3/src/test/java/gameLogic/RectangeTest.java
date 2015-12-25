@@ -23,23 +23,25 @@ public class RectangeTest {
         if (x==100) x=99;
         if (y==0) y=1;
         if (y==100) y=99;
-        junit.extensions.TestSetup.assertEquals( rec.isItIn(x, y), true);
+        int[] point=new int[2];
+        point[0]=x;
+        point[1]=y;
+        junit.extensions.TestSetup.assertEquals( rec.isItIn(point), true);
     }
     
     @Test
     public void isInWorksNegative(){
-        int bottom=0;
-        int top=100;
-        int left=0;
-        int right=100;
-        Rectangle rec = new Rectangle(top, bottom, left, right);
+        Rectangle rec = new Rectangle(100, 0, 0, 100);
         int x=(int) (Math.random()*100);
         int y=(int) (Math.random()*100);
         if (x<=50) x=-50;
         if (x>50) x=+50;
         if (y>=50) y=+50;
         if (y<50) y=-50;
-        junit.extensions.TestSetup.assertEquals( rec.isItIn(x, y), false);
+        int[] point=new int[2];
+        point[0]=x;
+        point[1]=y;
+        junit.extensions.TestSetup.assertEquals( rec.isItIn(point), false);
     }
     
     @Test
@@ -55,7 +57,7 @@ public class RectangeTest {
         int y2=top+(int)(Math.random()*100);
         int[] ayy = new int[2];
         ayy[0]=0; ayy[1]=0;
-        junit.extensions.TestSetup.assertNotSame(ayy, rec.lineCrosses(x1, y1, x2, y2));  
+        junit.extensions.TestSetup.assertNotSame(ayy, rec.lineCrosses(new int[]{x1,y1},new int[] {x2, y2}));  
     }
     
     @Test
@@ -71,6 +73,6 @@ public class RectangeTest {
         int x2=right+(int)(Math.random()*100);
         int[] ayy = new int[2];
         ayy[0]=0; ayy[1]=0;
-        junit.extensions.TestSetup.assertNotSame(ayy, rec.lineCrosses(x1, y1, x2, y2));  
+        junit.extensions.TestSetup.assertNotSame(ayy, rec.lineCrosses(new int[]{x1, y1},new int[] {x2, y2}));  
     }
 }

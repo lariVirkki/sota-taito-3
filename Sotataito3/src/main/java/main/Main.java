@@ -28,7 +28,7 @@ public class Main {
         Rectangle rec = new Rectangle(top, bottom, left, right);
         int x=(int) (Math.random()*100.0);
         int y=(int) (Math.random()*100.0);
-            System.out.println(x+" "+y+" "+rec.isItIn(x, y));
+        System.out.println(x+" "+y+" "+rec.isItIn(new int[]{x,y}));
     }
 }
 

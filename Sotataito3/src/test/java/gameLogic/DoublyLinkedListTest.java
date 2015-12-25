@@ -16,18 +16,18 @@ public class DoublyLinkedListTest {
     
     @Test
     public void addTest(){
-        TwoWayNode firstnode=new TwoWayNode(0,0);
+        TwoWayNode firstnode=new TwoWayNode(new int[]{0,0});
         DoublyLinkedList list = new DoublyLinkedList(firstnode);
-        TwoWayNode addend=new TwoWayNode(1,3);
+        TwoWayNode addend=new TwoWayNode(new int[]{1,3});
         list.add(addend);
         junit.extensions.TestSetup.assertEquals(list.toString(),"(0, 0)(1, 3)");
     }
     
     @Test
     public void removeOneTest(){
-        TwoWayNode eka=new TwoWayNode(1,1);
-        TwoWayNode toka=new TwoWayNode(1,2);
-        TwoWayNode kolmas=new TwoWayNode(3,3);
+        TwoWayNode eka=new TwoWayNode(new int[]{1,1});
+        TwoWayNode toka=new TwoWayNode(new int[]{0,0});
+        TwoWayNode kolmas=new TwoWayNode(new int[]{3,3});
         DoublyLinkedList lista=new DoublyLinkedList(eka);
         lista.add(toka);
         lista.add(kolmas);
@@ -37,13 +37,13 @@ public class DoublyLinkedListTest {
     
     @Test
     public void removeManyTest(){
-        TwoWayNode eka=new TwoWayNode(1,1);
-        TwoWayNode toka=new TwoWayNode(1,2);
-        TwoWayNode kolmas=new TwoWayNode(3,3);
-        TwoWayNode neljas=new TwoWayNode(6,7);
-        TwoWayNode viides=new TwoWayNode(3,4);
-        TwoWayNode kuudes=new TwoWayNode(4,1);
-        TwoWayNode seitsemas=new TwoWayNode(7,2);
+        TwoWayNode eka=new TwoWayNode(new int[]{1,1});;
+        TwoWayNode toka=new TwoWayNode(new int[]{1,2});;
+        TwoWayNode kolmas=new TwoWayNode(new int[]{0,0});;
+        TwoWayNode neljas=new TwoWayNode(new int[]{0,0});
+        TwoWayNode viides=new TwoWayNode(new int[]{3,4});
+        TwoWayNode kuudes=new TwoWayNode(new int[]{4,1});
+        TwoWayNode seitsemas=new TwoWayNode(new int[]{7,2});
         DoublyLinkedList lista=new DoublyLinkedList(eka);
         lista.add(toka);
         lista.add(kolmas);

@@ -16,9 +16,9 @@ public class Line {
     this class is used to construct rectangles
     */
     
-    private static boolean orientation;
-    private static int mainStat;
-    private static int start, end;
+    private final boolean orientation;
+    private final int mainStat;
+    private final int start, end;
     
     public Line(int level, boolean horizontal, int beginning, int endpoint){
         orientation=horizontal;  //horizontal = 1 | vertical = 0
@@ -27,11 +27,11 @@ public class Line {
         end=endpoint;
     }
     
-    public int[] lineCrosses(int startX, int startY, int endX, int endY){
+    public int[] lineCrosses(int[] startPoint, int[] endPoint){
         int[] output = new int[2];
         output[0]=0; output[1]=0;
-        double k = ((double) (endY-startY ))/((double)(endX-startX));
-        double b = ((double) startY)-startX*k;
+        double k = ((double) (endPoint[1]-startPoint[1] ))/((double)(endPoint[0]-startPoint[0]));
+        double b = ((double) startPoint[1])-startPoint[0]*k;
         int x=0;
         int y=1;
         if (orientation){
@@ -74,6 +74,10 @@ public class Line {
             output[1]=end;
         }
         return output;
+    }
+    
+    public int getMainStat(){
+        return this.mainStat;
     }
     
 }

@@ -12,10 +12,8 @@ public class TwoWayNode {
     private int[] coordinates;
     private TwoWayNode next, previous;
     
-    public TwoWayNode(int x, int y){
-        coordinates=new int[2];
-        coordinates[0]=x;
-        coordinates[1]=y;
+    public TwoWayNode(int[] point){
+        coordinates=point;
     }
     
     //------GETTERS

@@ -14,39 +14,41 @@ public class Map {
 // these index have to match so that ringlist[n] is the ring that surrounds
 // the patch of unpathable terrain reccolle[n]
     
-    public DoublyLinkedList pathing(int xStart, int yStart, int xGoal, int yGoal){
-        TwoWayNode start=new TwoWayNode(xStart, yStart);        //set the starting point, end point, and start constructing the path
-        TwoWayNode goal=new TwoWayNode(xGoal,yGoal);
-        DoublyLinkedList path=new DoublyLinkedList(start);
+    public DoublyLinkedList pathing(int[] startPoint, int[] endPoint){
+        int[] addend;
+        TwoWayNode start=new TwoWayNode(startPoint);        //set the starting point, end point, and start constructing the path
+        TwoWayNode goal=new TwoWayNode(startPoint);
+        DoublyLinkedList path=new DoublyLinkedList(start);  // the last command not to be iterated!
+        addend=unPathableInTheWay(startPoint, startPoint);
+        path.add(new TwoWayNode(addend));
         
         return path;
     }
     
-    public int[] unPathableInTheWay(int startX, int startY, int endX, int endY){  //sees if there is unpathable terrain between two points in plane, returns 0,0 if none
+    public int[] unPathableInTheWay(int[] startPoint, int[] endPoint){  //sees if there is unpathable terrain between two points in plane, returns 0,0 if none
         int[] output = new int[2];
         output[0]=0; output[1]=0;
         for (int i =0; i<unPathableList.length; i++){
-            int x=unPathableList[i].lineCrosses(startX, startY, endX, endY)[0];
-            int y=unPathableList[i].lineCrosses(startX, startY, endX, endY)[1];
-            if (!(x==0&&y==0)){
-                if(output[0]==0&&output[1]==0){
-                    output[0]=x; output[1]=y;
-                }else if (this.distance(startX, startY, output[0], output[1])>this.distance(startX, startY, x, y)){
-                    output[0]=x; output[1]=y;
+            int[] point = unPathableList[i].lineCrosses(startPoint, endPoint);
+            if (!Utility.isZeroPoint(point)){
+                if(Utility.isZeroPoint(output)){
+                    output=point;
+                }else if (Utility.distance(startPoint, output)>Utility.distance(startPoint, point)){
+                    output=point;
                 }
             }
         }
         return output;
     }
     
-    public boolean unpathablePoint(int x, int y){
+    public boolean unpathablePoint(int[] point){
         for (int i=0; i<unPathableList.length;i++){
-            if(unPathableList[i].isItIn(x, y)) return true;
+            if(unPathableList[i].isItIn(point)) return true;
         }
         return false;
     }
     
-    public int distance(int startX, int startY, int endX, int endY){
-        return (int) (Math.sqrt(Math.pow((double)(endX-startX), 2.0)+Math.pow((double)(endY-startY), 2.0)));
-    }
+    //public double distance(int[] startPoint, int[] endPoint){
+      //  return (Math.sqrt(Math.pow((double)(endPoint[0]-startPoint[0]), 2.0)+Math.pow((double)(endPoint[1]-startPoint[1]), 2.0)));
+    //}
 }
