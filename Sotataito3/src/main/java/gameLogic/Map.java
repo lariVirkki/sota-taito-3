@@ -31,6 +31,50 @@ public class Map {
         return output;
     }
     
+    public DoublyLinkedList yksi(DoublyLinkedList pathSoFar, int[] endPoint){ //work name!!! this implements function (1) in notes!!!
+        int[] collisionPoint=unPathableInTheWay(pathSoFar.getLast().getCoords(),endPoint);
+        if (collisionPoint==new int[]{0,0}){
+            pathSoFar.add(new TwoWayNode(endPoint));
+            return pathSoFar;
+        }
+        pathSoFar.add(closestPointInRing(collisionPoint));
+        return shortestAlternative(pathSoFar,endPoint);
+    }
+    
+    public DoublyLinkedList shortestAlternative(DoublyLinkedList pathSoFar, int[] endPoint){
+        DoublyLinkedList leftPath=findEdgeLeft(pathSoFar,endPoint);
+        DoublyLinkedList rightPath=findEdgeRight(pathSoFar,endPoint);
+        if (rightPath.length()<leftPath.length()){
+            return rightPath;
+        }else{
+            return leftPath;
+        }
+    }
+    
+    public DoublyLinkedList findEdgeLeft(DoublyLinkedList pathSoFar, int[] endPoint){
+        TwoWayNode current=pathSoFar.getLast();
+        while(Utility.distance(unPathableInTheWay(current.getCoords(),endPoint), current.getCoords())<20&&unPathableInTheWay(current.getCoords(),endPoint)!=new int[]{0,0}){
+            pathSoFar.add(current);
+            current=current.getPrevious(); //going left = getting previous!!!!
+        }
+        pathSoFar=cleanLeft(pathSoFar);
+        return yksi(pathSoFar,endPoint);
+    }
+    
+    public DoublyLinkedList cleanLeft(DoublyLinkedList pathSoFar){
+        
+    }
+    
+    public DoublyLinkedList findEdgeRight(DoublyLinkedList pathSoFar, int[] endPoint){
+        TwoWayNode current=pathSoFar.getLast();
+        while(Utility.distance(unPathableInTheWay(current.getCoords(),endPoint), current.getCoords())<20&&unPathableInTheWay(current.getCoords(),endPoint)!=new int[]{0,0}){
+            pathSoFar.add(current);
+            current=current.getNext(); //going left = getting previous!!!!
+        }
+        pathSoFar=cleanRight(pathSoFar);
+        return yksi(pathSoFar,endPoint);
+    }
+
     
     public TwoWayNode closestPointInRing(int[] startPoint){
         int[] output=new int[2];

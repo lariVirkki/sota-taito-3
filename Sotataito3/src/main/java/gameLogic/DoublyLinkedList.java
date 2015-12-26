@@ -64,4 +64,12 @@ public class DoublyLinkedList {
     public TwoWayNode getFirst(){
         return FIRST;
     }
+    
+    public TwoWayNode getLast(){
+        TwoWayNode current=FIRST;
+        while (current.getNext()!=null){
+            current=current.getNext();
+        }
+        return current;
+    }
 }
