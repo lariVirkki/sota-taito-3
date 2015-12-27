@@ -3,7 +3,7 @@
  *  pls no copypasterino
  */
 package main;
-import gameLogic.*;
+import gameLogic.pathingLogic.Rectangle;
 /**
  *
  * @author lari

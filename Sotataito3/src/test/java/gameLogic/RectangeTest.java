@@ -3,6 +3,7 @@
  *  pls no copypasterino
  */
 package gameLogic;
+import gameLogic.pathingLogic.Rectangle;
 import org.junit.*;
 /**
  *

@@ -2,7 +2,7 @@
  *  made by Lari Virkki
  *  pls no copypasterino
  */
-package gameLogic;
+package gameLogic.pathingLogic;
 
 /**
  *

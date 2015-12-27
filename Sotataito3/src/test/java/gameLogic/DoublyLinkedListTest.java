@@ -3,6 +3,8 @@
  *  pls no copypasterino
  */
 package gameLogic;
+import gameLogic.pathingLogic.DoublyLinkedList;
+import gameLogic.pathingLogic.TwoWayNode;
 import org.junit.*;
 /**
  *

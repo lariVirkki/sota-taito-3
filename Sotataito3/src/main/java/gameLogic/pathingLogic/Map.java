@@ -2,7 +2,7 @@
  *  made by Lari Virkki
  *  pls no copypasterino
  */
-package gameLogic;
+package gameLogic.pathingLogic;
 
 /**
  *
@@ -57,12 +57,24 @@ public class Map {
             pathSoFar.add(current);
             current=current.getPrevious(); //going left = getting previous!!!!
         }
-        pathSoFar=cleanLeft(pathSoFar);
+        pathSoFar=clean(pathSoFar);
         return yksi(pathSoFar,endPoint);
     }
     
-    public DoublyLinkedList cleanLeft(DoublyLinkedList pathSoFar){
-        
+    public DoublyLinkedList clean(DoublyLinkedList pathSoFar){
+        TwoWayNode forwardNode=pathSoFar.getLast();
+        TwoWayNode potentialPrevious=pathSoFar.getFirst().getPrevious().getPrevious();
+        while (potentialPrevious!=null){
+            while (potentialPrevious!=null){
+                if (unPathableInTheWay(forwardNode.getCoords(),potentialPrevious.getCoords())==new int[]{0,0}){
+                    pathSoFar.remove(forwardNode, potentialPrevious);
+                }
+                potentialPrevious=potentialPrevious.getPrevious();
+            }
+            forwardNode=forwardNode.getPrevious();
+            potentialPrevious=forwardNode.getPrevious().getPrevious();
+        }
+        return pathSoFar;
     }
     
     public DoublyLinkedList findEdgeRight(DoublyLinkedList pathSoFar, int[] endPoint){
@@ -71,7 +83,7 @@ public class Map {
             pathSoFar.add(current);
             current=current.getNext(); //going left = getting previous!!!!
         }
-        pathSoFar=cleanRight(pathSoFar);
+        pathSoFar=clean(pathSoFar);
         return yksi(pathSoFar,endPoint);
     }
 
