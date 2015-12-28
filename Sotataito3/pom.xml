@@ -40,10 +40,12 @@
                     <version>1.1.4</version>
                     <configuration>
                         <targetClasses>
-                            <param>gameLogic.*</param>
+                            <param>gameLogic.pathingLogic*</param>
+                            <param>gameLogic.mapCreation*</param>
                         </targetClasses>
                     <targetTests>
-                        <param>gameLogic.*</param>
+                        <param>gameLogic.pathingLogic*</param>
+                        <param>gameLogic.mapCreation*</param>
                     </targetTests>
                     </configuration>
                 </plugin>

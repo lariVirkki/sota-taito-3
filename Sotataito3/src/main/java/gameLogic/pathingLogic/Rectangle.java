@@ -4,6 +4,8 @@
  */
 package gameLogic.pathingLogic;
 
+import java.util.Arrays;
+
 /**
  *
  * @author lari
@@ -51,5 +53,25 @@ public class Rectangle {
             System.out.println(theLines[i].getMainStat());
         }
         return (point[0]>=theLines[3].getMainStat()&&point[0]<=theLines[1].getMainStat()&&point[1]>=theLines[2].getMainStat()&&point[1]<=theLines[0].getMainStat());
+    }
+    
+    public boolean contains(Rectangle rec){
+        int[] biggie=this.getCoords();
+        int[] smalls=rec.getCoords();
+        return (biggie[0]>=smalls[0]&&biggie[1]>=smalls[1]&&biggie[2]<=smalls[2]&&biggie[3]<=smalls[3]);
+    }
+    
+    public int[] getCoords(){
+        int[] output=new int[4]; //output will be {top,right,bottom,left}
+        output[0]=theLines[0].getMainStat();
+        output[1]=theLines[1].getMainStat();
+        output[2]=theLines[2].getMainStat();
+        output[3]=theLines[3].getMainStat();
+        return output;
+    }
+    
+    @Override
+    public String toString(){
+        return Arrays.toString(this.getCoords());
     }
 }
