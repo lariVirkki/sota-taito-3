@@ -8,7 +8,7 @@ import gameLogic.pathingLogic.*;
  *
  * @author lari
  */
-public final class MapReader {
+public final class RectangleCreator {
     //private String mapFile;
     //private Map mapInstance;
     

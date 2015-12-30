@@ -47,7 +47,7 @@ public class MapReaderTest {
     
     static Rectangle[] mapCreationTest(String map){
         Rectangle[] shah= new Rectangle[100];
-        return MapReader.getRectangles(map,shah,0);
+        return RectangleCreator.getRectangles(map,shah,0);
     }
     
     static String print(Rectangle[] ayy){

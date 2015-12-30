@@ -8,10 +8,10 @@ package gameLogic.pathingLogic;
  *
  * @author lari
  */
-public class RecColle {
+public class RectangleCollection {
     private Rectangle[] collection;
     //each instance of this class contains one patch of unpathable terrain
-    public RecColle(int maxSize){
+    public RectangleCollection(int maxSize){
         collection = new Rectangle[maxSize];
     }
     
@@ -29,6 +29,14 @@ public class RecColle {
             if (collection1.isItIn(point)) {
                 return true;
             }
+        }
+        return false;
+    }
+    
+    public boolean overlaps(Rectangle rec){
+        for (int i=0;i<collection.length;i++){
+            if (collection[i]==null)break;
+            if (collection[i].overlaps(rec)) return true;
         }
         return false;
     }

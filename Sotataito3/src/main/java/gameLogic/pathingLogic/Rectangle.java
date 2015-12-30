@@ -61,6 +61,12 @@ public class Rectangle {
         return (biggie[0]>=smalls[0]&&biggie[1]>=smalls[1]&&biggie[2]<=smalls[2]&&biggie[3]<=smalls[3]);
     }
     
+    public boolean overlaps(Rectangle rec){
+        int[] a=this.getCoords();
+        int[] b=rec.getCoords();
+        return (this.isItIn(new int[] {b[1],b[0]})||this.isItIn(new int[] {b[3],b[0]})||this.isItIn(new int[] {b[1],b[2]})||this.isItIn(new int[] {b[3],b[2]}))&&(rec.isItIn(new int[] {a[1],a[0]})||rec.isItIn(new int[] {a[3],a[0]})||rec.isItIn(new int[] {a[1],a[2]})||rec.isItIn(new int[] {a[3],a[2]}));
+    }
+    
     public int[] getCoords(){
         int[] output=new int[4]; //output will be {top,right,bottom,left}
         output[0]=theLines[0].getMainStat();

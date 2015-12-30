@@ -10,7 +10,7 @@ package gameLogic.pathingLogic;
  */
 public class Map {
     private Ring[] ringList;
-    private RecColle[] unPathableList; 
+    private RectangleCollection[] unPathableList; 
 // these index have to match so that ringlist[n] is the ring that surrounds
 // the patch of unpathable terrain reccolle[n]
     
