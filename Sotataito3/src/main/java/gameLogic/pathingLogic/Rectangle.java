@@ -80,4 +80,9 @@ public class Rectangle {
     public String toString(){
         return Arrays.toString(this.getCoords());
     }
+    
+    public int[][] getPoints(){
+        int[] a=this.getCoords();
+        return new int[][] {{a[3],a[0]},{a[1],a[0]},{a[1],a[2]},{a[3],a[2]}};
+    }
 }

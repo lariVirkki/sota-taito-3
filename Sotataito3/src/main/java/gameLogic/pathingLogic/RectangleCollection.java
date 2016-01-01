@@ -57,4 +57,13 @@ public class RectangleCollection {
         }
         return output;
     }
+    
+    public int[][][] getPoints(){
+        int[][][] output=new int[collection.length][4][2];
+        for (int i=0;i<collection.length;i++){
+            if (collection[i]==null) break;
+            output[i]=collection[i].getPoints();
+        }
+        return output;
+    }
 }
