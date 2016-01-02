@@ -10,15 +10,23 @@ package gameLogic.pathingLogic;
  */
 public class Map {
     private Ring[] ringList;
-    private RectangleCollection[] unPathableList; 
+    private RectangleCollection[] unPathableList;
+    private int[] borders;
 // these index have to match so that ringlist[n] is the ring that surrounds
 // the patch of unpathable terrain reccolle[n]
     
+    
+    public Map(Ring[] ring, RectangleCollection[] rec, int[] bd){
+        ringList=ring;
+        unPathableList=rec;
+        borders=bd;
+    }
     
     public int[] unPathableInTheWay(int[] startPoint, int[] endPoint){  //sees if there is unpathable terrain between two points in plane, returns 0,0 if none
         int[] output = new int[2];
         output[0]=0; output[1]=0;
         for (int i =0; i<unPathableList.length; i++){
+            if (unPathableList[i]==null) break;
             int[] point = unPathableList[i].lineCrosses(startPoint, endPoint);
             if (!Utility.isZeroPoint(point)){
                 if(Utility.isZeroPoint(output)){
@@ -30,7 +38,7 @@ public class Map {
         }
         return output;
     }
-    
+    //there's an infinite loop somewhere, and it is probably produced by a map surrounded by unpathable...
     public DoublyLinkedList yksi(DoublyLinkedList pathSoFar, int[] endPoint){ //work name!!! this implements function (1) in notes!!!
         int[] collisionPoint=unPathableInTheWay(pathSoFar.getLast().getCoords(),endPoint);
         if (collisionPoint==new int[]{0,0}){
@@ -63,7 +71,7 @@ public class Map {
     
     public DoublyLinkedList clean(DoublyLinkedList pathSoFar){
         TwoWayNode forwardNode=pathSoFar.getLast();
-        TwoWayNode potentialPrevious=pathSoFar.getFirst().getPrevious().getPrevious();
+        TwoWayNode potentialPrevious=pathSoFar.getLast().getPrevious().getPrevious(); 
         while (potentialPrevious!=null){
             while (potentialPrevious!=null){
                 if (unPathableInTheWay(forwardNode.getCoords(),potentialPrevious.getCoords())==new int[]{0,0}){
@@ -92,6 +100,7 @@ public class Map {
         int[] output=new int[2];
         int[] point;
         for (int i=0; i<ringList.length;i++){
+            if (ringList[i]==null) break;
             point=ringList[i].getClosest(startPoint);
             if(Utility.isZeroPoint(output)){
                     output=point;

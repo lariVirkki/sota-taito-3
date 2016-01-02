@@ -55,7 +55,7 @@ public final class RectangleCreator {
         //System.out.print("b = "+b);
         int top=e/rowLength-1;
         int right=e%rowLength;
-        return new Rectangle(top*50+25,bottom*50-25,left*50-25,right*50+25); //one row of ### will have height, and scale of char:px is 1:50!!!
+        return new Rectangle(top*50+50,bottom*50,left*50,right*50+50); //one row of ### will have height, and scale of char:px is 1:50!!!
     }
     
     private static Rectangle[] findRectangleBeginning(String file, int row, int rowLength,Rectangle[] rectanglesSoFar){

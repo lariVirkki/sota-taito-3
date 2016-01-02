@@ -25,10 +25,9 @@ public class RectangleCollection {
     }
     
     public boolean isItIn(int[] point){
-        for (Rectangle collection1 : collection) { //pretty :3
-            if (collection1.isItIn(point)) {
-                return true;
-            }
+        for (int i=0;i<collection.length;i++){
+            if(collection[i]==null) break;
+            if(collection[i].isItIn(point)) return true;
         }
         return false;
     }
@@ -46,6 +45,7 @@ public class RectangleCollection {
         int[] output = new int[2];
         output[0]=0; output[1]=0;
         for (int i =0; i<collection.length; i++){
+            if (collection[i]==null) break; //null breakers are necessary :DD
             int[] point = collection[i].lineCrosses(startPoint, endPoint);
             if (!Utility.isZeroPoint(point)){
                 if(Utility.isZeroPoint(output)){

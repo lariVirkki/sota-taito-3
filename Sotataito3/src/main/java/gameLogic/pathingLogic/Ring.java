@@ -34,7 +34,7 @@ public class Ring {
         STARTNODE.setPrevious(addend);
     }
     
-    public int[] getClosest(int[] point){
+    public int[] getClosest(int[] point){  //null pointer exception here????? Rings not closed upon creation????
         TwoWayNode node=STARTNODE;
         int[] output=node.getCoords();
         while (true){

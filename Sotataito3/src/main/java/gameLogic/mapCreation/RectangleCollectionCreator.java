@@ -10,7 +10,7 @@ import gameLogic.pathingLogic.*;
  */
 public final class RectangleCollectionCreator {
     
-    static RectangleCollection[] sortRectangles(Rectangle[] rectangleList){
+    public static RectangleCollection[] sortRectangles(Rectangle[] rectangleList){
         RectangleCollection[] list = new RectangleCollection[255];
         int blobNumber=0;
         list[blobNumber]=new RectangleCollection(255);

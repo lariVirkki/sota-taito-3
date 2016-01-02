@@ -11,14 +11,14 @@ import org.junit.Test;
  *
  * @author lari
  */
-public class MapReaderTest {
+public class RectangleCreatorTest {
     
     @Test
     public void testSimple(){
         String map=".....\n..##.\n..##.\n.....\n.....\n";
         Rectangle [] ayy=mapCreationTest(map);
         String shah=print(ayy);
-        org.junit.Assert.assertEquals("[2, 3, 1, 2]",shah);
+        org.junit.Assert.assertEquals("[150, 200, 50, 100]",shah);
     }
     
     @Test
@@ -26,7 +26,7 @@ public class MapReaderTest {
         String map="..##\n..##\n....\n....\n";
         Rectangle[] ayy=mapCreationTest(map);
         String shah=print(ayy);
-        org.junit.Assert.assertEquals("[1, 3, 0, 2]",shah);
+        org.junit.Assert.assertEquals("[100, 200, 0, 100]",shah);
     }
     
     @Test
@@ -34,7 +34,7 @@ public class MapReaderTest {
         String map="......\n..###.\n.###..\n......\n";
         Rectangle[] ayy=mapCreationTest(map);
         String shah=print(ayy);
-        org.junit.Assert.assertEquals("[1, 4, 1, 2]" + "[2, 3, 2, 1]",shah);
+        org.junit.Assert.assertEquals("[100, 250, 50, 100]" + "[150, 200, 100, 50]",shah);
     }
     
     @Test
@@ -42,7 +42,7 @@ public class MapReaderTest {
         String map="..##\n..##\n##..\n##..\n";
         Rectangle[] ayy=mapCreationTest(map);
         String shah=print(ayy);
-        org.junit.Assert.assertEquals("[1, 3, 0, 2]" + "[3, 1, 2, 0]",shah);
+        org.junit.Assert.assertEquals("[100, 200, 0, 100]" + "[200, 100, 100, 0]",shah);
     }
     
     static Rectangle[] mapCreationTest(String map){

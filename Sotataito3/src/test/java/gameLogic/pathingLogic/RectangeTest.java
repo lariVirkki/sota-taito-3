@@ -4,6 +4,7 @@
  */
 package gameLogic.pathingLogic;
 import gameLogic.pathingLogic.Rectangle;
+import java.util.Arrays;
 import org.junit.*;
 /**
  *
@@ -35,11 +36,12 @@ public class RectangeTest {
         Rectangle rec = new Rectangle(100, 0, 0, 100);
         int x=(int) (Math.random()*100);
         int y=(int) (Math.random()*100);
-        if (x<=50) x=-51;
-        if (x>50) x=+50;
-        if (y>=50) y=+51;
-        if (y<50) y=-50;
+        if (x<=50) x+=-51;
+        if (x>50) x+=+50;
+        if (y>=50) y+=+51;
+        if (y<50) y+=-50;
         int[] point=new int[]{x,y};
+       // System.out.println(Arrays.toString(point));
         junit.extensions.TestSetup.assertEquals( false, rec.isItIn(point));
     }
     
