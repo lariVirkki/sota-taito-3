@@ -8,9 +8,14 @@ import java.util.Arrays;
 /**
  *
  * @author lari
+ * Given a list of rectangles, this clumps some of them together
  */
 public final class RectangleCollectionCreator {
-    
+    /**
+     * 
+     * @param rectangleList list of rectangles found
+     * @return list of RectangleCollections containing those rectangles
+     */
     public static RectangleCollection[] sortRectangles(Rectangle[] rectangleList){
         RectangleCollection[] list = new RectangleCollection[255];
         int blobNumber=0;

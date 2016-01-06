@@ -47,7 +47,7 @@ public class RectangleCreatorTest {
     
     static Rectangle[] mapCreationTest(String map){
         Rectangle[] shah= new Rectangle[100];
-        return RectangleCreator.getRectangles(map,shah,0);
+        return RectangleCreator.getRectangles(map,shah);
     }
     
     static String print(Rectangle[] ayy){

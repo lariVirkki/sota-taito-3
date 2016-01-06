@@ -11,21 +11,57 @@ import java.util.Arrays;
  * @author lari
  */
 public class Map {
-    private Ring[] ringList;
+ //   private Ring[] ringList;
     private RectangleCollection[] unPathableList;
     private int[] borders;
+    private int[] spawnPoint1;
+    private int[] spawnPoint2;
 // these index have to match so that ringlist[n] is the ring that surrounds
 // the patch of unpathable terrain reccolle[n]
     
     
-    public Map(Ring[] ring, RectangleCollection[] rec, int[] bd){
-        ringList=ring;
+    public Map(Ring[] ring, RectangleCollection[] rec, int[] bd,int[] x, int[] y){
+//        ringList=ring;
         unPathableList=rec;
         borders=bd;
+        this.spawnPoint1=x;
+        this.spawnPoint2=y;
     }
     
+    /**
+     * @param point is a integer array whose first two integers are treated as a point in plane
+     * @return true when point is outside
+     */
+    public boolean outOfBoundsPoint(int[] point){
+        return (point[0]<0||point[0]>borders[0]||point[1]<0||point[1]>borders[1]);
+    }
+    
+    /**
+     * if there are obstacles in the way, no path is created
+     * otherwise the path goes straight from start to finish
+     * @param startPoint the starting point
+     * @param endPoint the ending point
+     * @return either a path between the points, or a path from start to start
+     */
+    public DoublyLinkedList idiotPathing(int[] startPoint, int[] endPoint){
+        DoublyLinkedList output=new DoublyLinkedList(new TwoWayNode(startPoint));
+        int[] collisionPoint=unPathableInTheWay(startPoint,endPoint);
+        if (Utility.isZeroPoint(collisionPoint)||outOfBoundsPoint(collisionPoint)){
+            output.add(new TwoWayNode(startPoint));
+            return output;
+        }
+        output.add(new TwoWayNode(endPoint));
+        return output;
+    }
+    
+    /**
+     * decides whether or not there is an obstacle in the way, and if there is, where's the collision point on a straight line
+     * @param startPoint 
+     * @param endPoint
+     * @return {0,0} if nothing is in the way, else, the point where collision would happen if you moved straight from start to finish
+     */
     public int[] unPathableInTheWay(int[] startPoint, int[] endPoint){  //sees if there is unpathable terrain between two points in plane, returns 0,0 if none
-        System.out.println("ENTERED UNPATHABLEINTHEWAY");
+        //System.out.println("ENTERED UNPATHABLEINTHEWAY");
         int[] output = new int[2];
         output[0]=0; output[1]=0;
         for (int i =0; i<unPathableList.length; i++){
@@ -39,12 +75,12 @@ public class Map {
                 }
             }
         }
-        System.out.println("Returning "+Arrays.toString(output));
+        //System.out.println("Returning "+Arrays.toString(output));
         return output;
     }
     
     
-    public DoublyLinkedList yksi(DoublyLinkedList pathSoFar, int[] endPoint){ //work name!!! this implements function (1) in notes!!!
+/*    public DoublyLinkedList yksi(DoublyLinkedList pathSoFar, int[] endPoint){ //work name!!! this implements function (1) in notes!!!
         int[] collisionPoint=unPathableInTheWay(pathSoFar.getLast().getCoords(),endPoint);
         System.out.println("Entered the branching point! point is: "+Arrays.toString(collisionPoint));
         System.out.println("index is "+whichUnPathable(collisionPoint));
@@ -143,4 +179,5 @@ public class Map {
     public RectangleCollection[] getUnPathable(){
         return this.unPathableList;
     }
+*/
 }

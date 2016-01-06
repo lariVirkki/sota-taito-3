@@ -14,8 +14,8 @@ import org.junit.Test;
  * @author lari
  */
 public class RingCreatorTest {
-    
-    @Test
+//rings no longer matter
+/*    @Test
     public void simpleRectangle(){
         String file=".........................\n" +
                     ".........####............\n" +
@@ -49,4 +49,5 @@ public class RingCreatorTest {
                                       "[650, 50]\n" +
                                       "[450, 50]", output);
     }
+*/
 }

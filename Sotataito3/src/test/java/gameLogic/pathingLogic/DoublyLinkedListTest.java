@@ -39,9 +39,9 @@ public class DoublyLinkedListTest {
     
     @Test
     public void removeManyTest(){
-        TwoWayNode eka=new TwoWayNode(new int[]{1,1});;
-        TwoWayNode toka=new TwoWayNode(new int[]{1,2});;
-        TwoWayNode kolmas=new TwoWayNode(new int[]{0,0});;
+        TwoWayNode eka=new TwoWayNode(new int[]{1,1});
+        TwoWayNode toka=new TwoWayNode(new int[]{1,2});
+        TwoWayNode kolmas=new TwoWayNode(new int[]{0,0});
         TwoWayNode neljas=new TwoWayNode(new int[]{0,0});
         TwoWayNode viides=new TwoWayNode(new int[]{3,4});
         TwoWayNode kuudes=new TwoWayNode(new int[]{4,1});
@@ -56,4 +56,22 @@ public class DoublyLinkedListTest {
         lista.remove(toka, viides);
         junit.extensions.TestSetup.assertEquals(lista.toString(), "(1, 1)(1, 2)(3, 4)(4, 1)(7, 2)");
     }
+    
+    @Test
+    public void linksBackwards(){
+        TwoWayNode eka=new TwoWayNode(new int[]{1,1});
+        TwoWayNode toka=new TwoWayNode(new int[]{1,2});
+        DoublyLinkedList lista=new DoublyLinkedList(eka);
+        lista.add(toka);
+        org.junit.Assert.assertEquals(eka, lista.getLast().getPrevious());
+    }
+    
+    @Test
+    public void length(){
+        TwoWayNode eka=new TwoWayNode(new int[]{1,1});
+        TwoWayNode toka=new TwoWayNode(new int[]{1,3});
+        DoublyLinkedList lista=new DoublyLinkedList(eka);
+        lista.add(toka);
+        org.junit.Assert.assertEquals(2, lista.length());
+   }
 }

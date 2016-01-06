@@ -12,11 +12,17 @@ import java.util.Arrays;
  */
 public class RectangleCollection {
     private Rectangle[] collection;
-    //each instance of this class contains one patch of unpathable terrain
+    /**
+     * each instance of this class contains one patch of unpathable terrain
+     */
     public RectangleCollection(int maxSize){
         collection = new Rectangle[maxSize];
     }
     
+    /**
+     * adds addend to the collection
+     * @param addend 
+     */
     public void add(Rectangle addend){ //everything falls apart if we add the same
         for (int i=0; i<collection.length;i++){ //rectangle multiple times!!
             if (collection[i]==null){
@@ -26,6 +32,11 @@ public class RectangleCollection {
         }
     }
     
+    /**
+     * checks if this collection covers a point
+     * @param point
+     * @return 
+     */
     public boolean isItIn(int[] point){
         for (int i=0;i<collection.length;i++){
             if(collection[i]==null) break;
@@ -34,6 +45,11 @@ public class RectangleCollection {
         return false;
     }
     
+    /**
+     * checks if this collection covers a point. border points will return false
+     * @param point
+     * @return 
+     */
     public boolean isItInEx(int[] point){
         for (int i=0;i<collection.length;i++){
             if(collection[i]==null) break;
@@ -42,6 +58,10 @@ public class RectangleCollection {
         return false;
     }
     
+    /**
+     * @param rec
+     * @return true iff one of the rectangles in collection overlaps with rec
+     */
     public boolean overlaps(Rectangle rec){
         for (int i=0;i<collection.length;i++){
             if (collection[i]==null)break;
@@ -50,7 +70,12 @@ public class RectangleCollection {
         return false;
     }
     
-    
+    /**
+     * 
+     * @param startPoint
+     * @param endPoint
+     * @return the closest point to startPoint that is mutual to line between start- and endPoint and one of the lines contained in this collection
+     */
     public int[] lineCrosses(int[] startPoint, int[] endPoint){
         int[] output = new int[]{0,0};
         for (int i =0; i<collection.length; i++){
@@ -72,6 +97,11 @@ public class RectangleCollection {
         return output;
     }
     
+    /**
+     * output[rectangle number][corner number] = {x,y}
+     * output[rectangle number] = {top{x,y},right{x,y},bottom{x,y},left{x,y}}
+     * @return the output described above
+     */
     public int[][][] getPoints(){
         int[][][] output=new int[collection.length][4][2];
         for (int i=0;i<collection.length;i++){

@@ -19,6 +19,10 @@ public class Ring {
         return STARTNODE;
     }
 
+    /**
+     * adds a new node at the end of the chain
+     * @param addend 
+     */
     public void add(TwoWayNode addend){
         TwoWayNode node=STARTNODE;
         while (node.getNext()!=null){
@@ -28,12 +32,21 @@ public class Ring {
         addend.setPrevious(node);  //...so it's left neighbor is the second newest
     }
     
+    /**
+     * adding after this will result in infinite loop, since now all nodes have a predecessor and a successor
+     * @param addend 
+     */
     public void addAndClose(TwoWayNode addend){
         add(addend);
         addend.setNext(STARTNODE);  //the ring is now closed
         STARTNODE.setPrevious(addend);
     }
     
+    /**
+     * 
+     * @param point
+     * @return returns the node closest to a point
+     */
     public TwoWayNode getClosest(int[] point){  //null pointer exception here????? Rings not closed upon creation????
         TwoWayNode node=STARTNODE;
         TwoWayNode output=node;

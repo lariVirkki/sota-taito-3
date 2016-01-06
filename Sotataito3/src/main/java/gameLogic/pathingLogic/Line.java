@@ -20,6 +20,13 @@ public class Line {
     private final int mainStat;
     private final int start, end;
     
+    /**
+     * as these lines are of the form x=a,end>y>start or y=a,end>x>start, the orientation needs to be stored in a boolean
+     * @param level the line's value in either y or x axis
+     * @param horizontal horizontal lines have this as true
+     * @param beginning
+     * @param endpoint 
+     */
     public Line(int level, boolean horizontal, int beginning, int endpoint){
         orientation=horizontal;  //horizontal = 1 | vertical = 0
         mainStat=level;
@@ -27,6 +34,12 @@ public class Line {
         end=endpoint;
     }
     
+    /**
+     * if Utility.isZeroPoint(lineCrosses), this line isn't crossed
+     * @param startPoint 
+     * @param endPoint
+     * @return the point where a line between two points crosses this line.
+     */
     public int[] lineCrosses(int[] startPoint, int[] endPoint){
         int[] output = new int[2];
         output[0]=0; output[1]=0;

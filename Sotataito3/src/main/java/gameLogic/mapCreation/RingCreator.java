@@ -8,6 +8,7 @@ import java.util.Arrays;
 /**
  *
  * @author lari
+ * not currently in use
  */
 public final class RingCreator {
     //scale: one character is 50 pixels
@@ -26,21 +27,26 @@ public final class RingCreator {
         int[][][] inputPoints=recColle.getPoints(); //{rectangle1{corner1{n1,n2}},rectangle2..} too complex for me??
         int[][] output=new int[inputPoints.length][2]; //each and every one of them corners might be on the outside
         int outputIndex=0; //all the points listed will be back to back
+        int[] change=new int[2];
         for (int i=0; i<inputPoints.length;i++){  //iterates over the set of rectangles
             for(int j=0; j<=3;j++){  //this for iterates over one set of corner points
-                if(!recColle.isItInEx(inputPoints[i][j])&&!Utility.isZeroPoint(inputPoints[i][j])){
-                    System.out.println("OUTER POINT! "+Arrays.toString(inputPoints[i][j])); //now outer points are found correctly!
+                if(!Utility.isZeroPoint(inputPoints[i][j])){
+                    //System.out.println("OUTER POINT! "+Arrays.toString(inputPoints[i][j])); //now outer points are found correctly!
                     switch(j){
-                        case 0: output[outputIndex]=pointAddition(inputPoints[i][j],new int[]{-25,25});
+                        case 0: change=new int[]{-25,25};
                                 break;
-                        case 1: output[outputIndex]=pointAddition(inputPoints[i][j],new int[]{25,25});
+                        case 1: change=new int[]{25,25};
                                 break;
-                        case 2: output[outputIndex]=pointAddition(inputPoints[i][j],new int[]{25,-25});
+                        case 2: change=new int[]{25,-25};
                                 break;
-                        case 3: output[outputIndex]=pointAddition(inputPoints[i][j],new int[]{-25,-25});
+                        case 3: change=new int[]{-25,-25};
                                 break;
                     }
-                    outputIndex++;
+                    if(!recColle.isItIn(pointAddition(inputPoints[i][j],change))){
+                        output[outputIndex]=pointAddition(inputPoints[i][j],change);
+                        outputIndex++;
+                    }
+                    
                 }
             }
         }
@@ -52,7 +58,7 @@ public final class RingCreator {
         return new int[]{addend1[0]+addend2[0],addend1[1]+addend2[1]};
     }
     
-    private static Ring createRing(int[][] points){
+    private static Ring createRing(int[][] points){ //the points aren't in order
         System.out.println("createRing reporting!! points[0] is "+Arrays.toString(points[0]));
         Ring output=new Ring(new TwoWayNode(points[0]));
         for (int i=1;i<points.length;i++){

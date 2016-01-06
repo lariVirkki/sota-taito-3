@@ -64,35 +64,7 @@ public class Main {
 
         */
         
-        String file="............\n" +
-                "............\n" +
-                ".....x......\n" +
-                "............\n" +
-                "............\n" +
-                ".#######....\n" +
-                "............\n" +
-                "....######..\n" +
-                "........##..\n" + //problem with this corner
-                ".....#..##..\n" +
-                ".....#..##..\n" +
-                "............\n" +
-                "............\n" +
-                ".....y......\n" +
-                "............\n" +
-                "............\n";
-        Map kartta=MapCreator.create(file);
-        DoublyLinkedList path=new DoublyLinkedList(new TwoWayNode(new int[] {300,150}));
-        path=kartta.yksi(path, new int[]{301,500});
-        RectangleCollection[] sheeeit=kartta.getUnPathable();
-        for(int i=0;i<sheeeit.length;i++){
-            System.out.println("shah");
-            if(sheeeit[i]==null){
-                System.out.println("NULL AT i = "+i);
-                break;
-            }
-            System.out.println(sheeeit[i].toString());
-        }
-        System.out.println("SIMPLE PATH = "+path.toString()); //claims there's a straight line between these points
+        
     }
     
         

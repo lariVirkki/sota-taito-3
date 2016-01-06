@@ -15,6 +15,10 @@ public class DoublyLinkedList {
         FIRST=node;
     }
     
+    /**
+     * adds a node to the list
+     * @param addend the node to be added
+     */
     public void add(TwoWayNode addend){ 
         TwoWayNode current=FIRST;
         addend=addend.clone();
@@ -25,6 +29,11 @@ public class DoublyLinkedList {
         addend.setPrevious(current); //it's important to make sure the list is doubly linked!!
     }
     
+    /**
+     * removes all nodes between start and stop. soundness of operation is not guaranteed here
+     * @param start the starting point of a removal. will be left there
+     * @param stop  the ending point of a removal. if not found will wipe everything after start!
+     */
     public void remove(TwoWayNode start, TwoWayNode stop){ //this binds start to stop
         TwoWayNode running = FIRST;                     //this goes through the nodes to seek matching ones
         while (!running.equals(start)&&running.getNext()!=null){ //no null errors pls
@@ -52,6 +61,10 @@ public class DoublyLinkedList {
         return output;
     }
     
+    /**
+     * not the number of nodes contained!!
+     * @return the summed distance between nodes
+     */
     public int length(){
         int dist=0;
         TwoWayNode current=FIRST;
@@ -66,6 +79,10 @@ public class DoublyLinkedList {
         return FIRST;
     }
     
+    /**
+     * finds the first node that has no successor
+     * @return the last node
+     */
     public TwoWayNode getLast(){
         TwoWayNode current=FIRST;
         while (current.getNext()!=null){
