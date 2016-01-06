@@ -52,4 +52,9 @@ public class TwoWayNode {
     public String toString(){
         return "("+Integer.toString(this.coordinates[0])+", "+Integer.toString(this.coordinates[1])+")";
     }
+    
+    @Override
+    public TwoWayNode clone(){
+        return new TwoWayNode(this.getCoords());
+    }
 }

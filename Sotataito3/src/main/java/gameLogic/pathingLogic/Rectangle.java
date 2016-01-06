@@ -32,11 +32,13 @@ public class Rectangle {
     }
     
     
-    public int[] lineCrosses(int[] startPoint, int[] endPoint){
-        int[] output = new int[2];
-        output[0]=0; output[1]=0;
+    public int[] lineCrosses(int[] startPoint, int[] endPoint){ //bug most likely here
+        //System.out.println("ENTERED A LINE CROSSES test on rectangle");
+        int[] output = new int[]{0,0};
         for (int i =0; i<theLines.length; i++){
+            //System.out.println("heading for test on line number "+i+"\nThe line is "+Arrays.toString(theLines[i].getStartPoint())+Arrays.toString(theLines[i].getEndPoint()));
             int[] point = theLines[i].lineCrosses(startPoint, endPoint);
+            //System.out.println("now crossing point is "+Arrays.toString(point));
             if (!Utility.isZeroPoint(point)){
                 if(Utility.isZeroPoint(output)){
                     output=point;
@@ -49,10 +51,11 @@ public class Rectangle {
     }
     
     public boolean isItIn(int[] point){
-        for (int i=0; i<theLines.length;i++){  //test sout
-            System.out.println(theLines[i].getMainStat());
-        }
         return (point[0]>=theLines[3].getMainStat()&&point[0]<=theLines[1].getMainStat()&&point[1]>=theLines[2].getMainStat()&&point[1]<=theLines[0].getMainStat());
+    }
+    
+    public boolean isItInEx(int[] point){
+        return (point[0]>theLines[3].getMainStat()&&point[0]<theLines[1].getMainStat()&&point[1]>theLines[2].getMainStat()&&point[1]<theLines[0].getMainStat());
     }
     
     public boolean contains(Rectangle rec){
@@ -78,10 +81,11 @@ public class Rectangle {
     
     @Override
     public String toString(){
+              System.out.println("here");
         return Arrays.toString(this.getCoords());
     }
     
-    public int[][] getPoints(){
+    public int[][] getPoints(){ //output will be {top left, top right, bottom right, bottom left
         int[] a=this.getCoords();
         return new int[][] {{a[3],a[0]},{a[1],a[0]},{a[1],a[2]},{a[3],a[2]}};
     }

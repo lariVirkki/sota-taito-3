@@ -4,6 +4,8 @@
  */
 package gameLogic.pathingLogic;
 
+import java.util.Arrays;
+
 /**
  *
  * @author lari
@@ -32,6 +34,14 @@ public class RectangleCollection {
         return false;
     }
     
+    public boolean isItInEx(int[] point){
+        for (int i=0;i<collection.length;i++){
+            if(collection[i]==null) break;
+            if(collection[i].isItInEx(point)) return true;
+        }
+        return false;
+    }
+    
     public boolean overlaps(Rectangle rec){
         for (int i=0;i<collection.length;i++){
             if (collection[i]==null)break;
@@ -42,11 +52,15 @@ public class RectangleCollection {
     
     
     public int[] lineCrosses(int[] startPoint, int[] endPoint){
-        int[] output = new int[2];
-        output[0]=0; output[1]=0;
+        int[] output = new int[]{0,0};
         for (int i =0; i<collection.length; i++){
-            if (collection[i]==null) break; //null breakers are necessary :DD
+            //System.out.println("this is iteration number "+i);
+            if (collection[i]==null){
+                //System.out.println("recColle cross broke at i="+i);
+                break;
+            } //null breakers are necessary :DD
             int[] point = collection[i].lineCrosses(startPoint, endPoint);
+            //System.out.println("Point found is: "+Arrays.toString(point)); //this point isn't reached at all??
             if (!Utility.isZeroPoint(point)){
                 if(Utility.isZeroPoint(output)){
                     output=point;
@@ -63,6 +77,17 @@ public class RectangleCollection {
         for (int i=0;i<collection.length;i++){
             if (collection[i]==null) break;
             output[i]=collection[i].getPoints();
+        }
+        return output;
+    }
+    
+    @Override
+    public String toString(){
+        int i=0;
+        String output="";
+        while(this.collection[i]!=null){
+            output+=collection[i].toString();
+            i++;
         }
         return output;
     }

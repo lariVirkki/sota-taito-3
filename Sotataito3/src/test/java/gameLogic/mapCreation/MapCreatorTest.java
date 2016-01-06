@@ -4,6 +4,7 @@
  */
 package gameLogic.mapCreation;
 
+import gameLogic.pathingLogic.Map;
 import org.junit.Test;
 
 /**
@@ -47,5 +48,17 @@ public class MapCreatorTest {
 "#.........##\n" +
 "############\n";
         org.junit.Assert.assertNotEquals(null, MapCreator.create(file));
+    }
+    
+    @Test
+    public void rightRectangles(){
+        String file="##############.................\n" +
+                    "...............................\n" +
+                    "...............##..............\n" +
+                    "..y..........#####..........x..\n" +
+                    "...............##..............\n" +
+                    "...............................\n";
+        Map map=MapCreator.create(file);
+    //    org.junit.Assert.assertArrayEquals(expecteds, actuals);
     }
 }

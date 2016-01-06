@@ -17,6 +17,7 @@ public class DoublyLinkedList {
     
     public void add(TwoWayNode addend){ 
         TwoWayNode current=FIRST;
+        addend=addend.clone();
         while (current.getNext()!=null){
             current=current.getNext();
         }
@@ -30,9 +31,9 @@ public class DoublyLinkedList {
             running=running.getNext();
         }
         TwoWayNode node = running; //here it has found a node matching the start of a removal
-        do {
+        while (!running.equals(stop)&&running.getNext()!=null) {
             running=running.getNext();
-        }while (!running.equals(stop)&&running.getNext()!=null); //no null errors
+        } //no null errors
                                                                  // a relevant note: if the end isn't found, remove(start, last); occurs
         node.setNext(running);  // here it has found a node matching the end of removal
         running.setPrevious(node);
@@ -44,7 +45,7 @@ public class DoublyLinkedList {
         String output="";
         do{
             output=output+node.toString();
-            System.out.println(output);
+            //System.out.println(output);
             if(node.getNext()==null) break;
             node=node.getNext();
         }while(true);
@@ -71,5 +72,9 @@ public class DoublyLinkedList {
             current=current.getNext();
         }
         return current;
+    }
+    
+    public boolean equals(DoublyLinkedList anotherList){
+        return (this.toString().equals(anotherList.toString()));
     }
 }

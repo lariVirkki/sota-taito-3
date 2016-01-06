@@ -46,7 +46,8 @@ public class RectangeTest {
     }
     
     @Test
-    public void lineCrossesPositiveY(){  //just to see if [0,0] works as a proper 'false'
+    public void lineCrossesPositiveY(){  //just to see if [0,0] works as a proper 'false'. this one goes through the Y-axis RANDOMS POORLY CHOSEN!!! 
+                                         //sometimes pass sometimes not
         int top = (int)(Math.random()*1000);
         int bottom = (int)(Math.random()*1000);
         int left = (int)(Math.random()*1000);
@@ -58,22 +59,22 @@ public class RectangeTest {
         int y2=top+(int)(Math.random()*100);
         int[] ayy = new int[2];
         ayy[0]=0; ayy[1]=0;
-        junit.extensions.TestSetup.assertNotSame(ayy, rec.lineCrosses(new int[]{x1,y1},new int[] {x2, y2}));  
+        org.junit.Assert.assertEquals(false, Utility.isZeroPoint(rec.lineCrosses(new int[]{x1,y1},new int[] {x2,y2})));  
     }
     
     @Test
-    public void lineCrossesPositiveX(){  //just to see if [0,0] works as a proper 'false'
+    public void lineCrossesPositiveX(){  //had to fix a -/+ thingie in this test... S A D B O Y S
         int top = (int)(Math.random()*1000);
         int bottom = (int)(Math.random()*1000);
         int left = (int)(Math.random()*1000);
         int right = (int)(Math.random()*1000);
         Rectangle rec= new Rectangle(top,bottom,left,right);
-        int y1=bottom+(int)(Math.random()*(right-left));
+        int y1=bottom-(int)(Math.random()*(right-left));
         int y2=bottom+(int)(Math.random()*(right-left));
         int x1=left-(int)(Math.random()*100);
         int x2=right+(int)(Math.random()*100);
         int[] ayy = new int[2];
-        ayy[0]=0; ayy[1]=0;
-        junit.extensions.TestSetup.assertNotSame(ayy, rec.lineCrosses(new int[]{x1, y1},new int[] {x2, y2}));  
+        System.out.println("point 1 = "+x1+" "+y1+"\n"+"point 2 = "+x2+" "+y2+"\n"+"rectangle = "+rec.toString());
+        org.junit.Assert.assertEquals(false, Utility.isZeroPoint(rec.lineCrosses(new int[]{x1,y1},new int[] {x2,y2})));  
     }
 }

@@ -18,7 +18,7 @@ public class Ring {
     public TwoWayNode get(){
         return STARTNODE;
     }
-    
+
     public void add(TwoWayNode addend){
         TwoWayNode node=STARTNODE;
         while (node.getNext()!=null){
@@ -34,15 +34,25 @@ public class Ring {
         STARTNODE.setPrevious(addend);
     }
     
-    public int[] getClosest(int[] point){  //null pointer exception here????? Rings not closed upon creation????
+    public TwoWayNode getClosest(int[] point){  //null pointer exception here????? Rings not closed upon creation????
         TwoWayNode node=STARTNODE;
-        int[] output=node.getCoords();
-        while (true){
-            node=node.getNext(); //incrementation
-            if(Utility.distance(output, point)>Utility.distance(node.getCoords(), point)){
-                output=node.getCoords();
+        TwoWayNode output=node;
+        while (node!=null){
+            if(Utility.distance(output.getCoords(), point)>Utility.distance(node.getCoords(), point)){
+                output=node;
             }
             if (node.equals(STARTNODE)){break;}
+            node=node.getNext(); //incrementation
+        }
+        return output;
+    }
+    
+    @Override
+    public String toString(){
+        TwoWayNode node=STARTNODE;
+        String output=node.toString();
+        while(node!=STARTNODE){
+            output+=node.toString();
         }
         return output;
     }

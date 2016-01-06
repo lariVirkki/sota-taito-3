@@ -16,23 +16,64 @@ public class PathingTest {
     @Test
     public void straightPath(){
         String file="............\n" +
-"............\n" +
-".....x......\n" +
-"............\n" +
-"............\n" +
-"............\n" +
-"............\n" +
-"............\n" +
-"............\n" +
-".....y......\n" +
-"............\n" +
-"............\n";
+                "............\n" +
+                ".....x......\n" +
+                "............\n" +
+                "............\n" +
+                "............\n" +
+                "............\n" +
+                "............\n" +
+                "............\n" +
+                ".....y......\n" +
+                "............\n" +
+                "............\n";
         Map kartta=MapCreator.create(file);
         DoublyLinkedList path= new DoublyLinkedList(new TwoWayNode(new int[]{270,250}));
         path=kartta.yksi(path, new int[]{270,500});
+        System.out.println("path= "+path.toString());
         DoublyLinkedList expected= new DoublyLinkedList(new TwoWayNode(new int[]{270,250}));
         expected.add(new TwoWayNode(new int[]{270,500}));
-        org.junit.Assert.assertEquals(expected, path);
+                System.out.println("expected= "+expected.toString());
+        org.junit.Assert.assertEquals(true, path.equals(expected));
+    }
+    
+    @Test
+    public void noUnPathable(){
+        String file="............\n" +
+                "............\n" +
+                ".....x......\n" +
+                "............\n" +
+                "............\n" +
+                "............\n" +
+                "............\n" +
+                "............\n" +
+                "............\n" +
+                ".....y......\n" +
+                "............\n" +
+                "............\n";
+        Map kartta=MapCreator.create(file);
+        TwoWayNode alku=new TwoWayNode(new int[] {100,100});
+        DoublyLinkedList path=new DoublyLinkedList(alku);
+        org.junit.Assert.assertArrayEquals(new int[] {0,0}, kartta.unPathableInTheWay(path.getLast().getCoords(), new int[] {200,800}));
+    }
+    
+    public void simpleUnPathable(){
+        String file="............\n" +
+                "............\n" +
+                ".....x......\n" +
+                "............\n" +
+                "............\n" +
+                ".###########\n" +
+                "............\n" +
+                "............\n" +
+                "............\n" +
+                ".....y......\n" +
+                "............\n" +
+                "............\n";
+        Map kartta=MapCreator.create(file);
+        DoublyLinkedList path=new DoublyLinkedList(new TwoWayNode(new int[] {300,150}));
+        path=kartta.yksi(path, new int[]{300,500});
+        System.out.println("SIMPLE PATH = "+path.toString());
     }
     
 }

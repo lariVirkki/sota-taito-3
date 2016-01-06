@@ -4,8 +4,10 @@
  */
 package main;
 import gameLogic.pathingLogic.Rectangle;
+import gameLogic.pathingLogic.RectangleCollection;
 import gameLogic.mapCreation.*;
 import gameLogic.pathingLogic.DoublyLinkedList;
+import gameLogic.pathingLogic.Map;
 import gameLogic.pathingLogic.TwoWayNode;
 import java.util.Arrays;
 /**
@@ -23,9 +25,9 @@ public class Main {
             isInWorksPositive();
         }
         */
-        TwoWayNode node=new TwoWayNode(new int[255]);
-        DoublyLinkedList listOfLists=new DoublyLinkedList(node); //the list contained in this list will be
-        listOfLists.getFirst().getCoords()[0]=12;
+        //TwoWayNode node=new TwoWayNode(new int[255]);
+    //    DoublyLinkedList listOfLists=new DoublyLinkedList(node); //the list contained in this list will be
+    //    listOfLists.getFirst().getCoords()[0]=12;
         //System.out.println(listOfLists.getFirst().getCoords()[0]);
         /*
         Rectangle rec = new Rectangle(100, 0, 0, 100);
@@ -46,23 +48,51 @@ public class Main {
         System.out.println("-----------------------------------");
         System.out.println(SanityCheck.linesAreOfUniformLength(shah, new int[]{6,6}));
 
+        
+        String file="##############.................\n" +
+                    "...............................\n" +
+                    "...............##..............\n" +
+                    "..y..........#####..........x..\n" +
+                    "...............##..............\n" +
+                    "...............................\n";
+        Map map=MapCreator.create(file);
+        int i=0;
+        RectangleCollection[] ayy=map.getUnPathable();
+        while(ayy[i]!=null){
+            System.out.println(ayy[i]);
+        }
+
         */
-        String file="###########\n" +
-"#.........#\n" +
-"#.........#\n" +
-"#....x....#\n" +
-"#.........#\n" +
-"#.........#\n" +
-"#.........#\n" +
-"#.........#\n" +
-"#.........#\n" +
-"#.........#\n" +
-"#.........#\n" +
-"#....y....#\n" +
-"#.........#\n" +
-"#.........#\n" +
-"###########\n";
-        System.out.println(SanityCheck.spawnPointsAreSane(file, SanityCheck.dimensions(file)));
+        
+        String file="............\n" +
+                "............\n" +
+                ".....x......\n" +
+                "............\n" +
+                "............\n" +
+                ".#######....\n" +
+                "............\n" +
+                "....######..\n" +
+                "........##..\n" + //problem with this corner
+                ".....#..##..\n" +
+                ".....#..##..\n" +
+                "............\n" +
+                "............\n" +
+                ".....y......\n" +
+                "............\n" +
+                "............\n";
+        Map kartta=MapCreator.create(file);
+        DoublyLinkedList path=new DoublyLinkedList(new TwoWayNode(new int[] {300,150}));
+        path=kartta.yksi(path, new int[]{301,500});
+        RectangleCollection[] sheeeit=kartta.getUnPathable();
+        for(int i=0;i<sheeeit.length;i++){
+            System.out.println("shah");
+            if(sheeeit[i]==null){
+                System.out.println("NULL AT i = "+i);
+                break;
+            }
+            System.out.println(sheeeit[i].toString());
+        }
+        System.out.println("SIMPLE PATH = "+path.toString()); //claims there's a straight line between these points
     }
     
         

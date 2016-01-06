@@ -54,6 +54,7 @@ public final class SanityCheck {
     }
 
     public static boolean connected(String file, int[] dimensions, int pointA, int pointB, int[] passedPoints){
+        if(pointA>=file.length()||pointA<0) return false;
         if(file.charAt(pointA)=='#') return false;
         for (int i=0;i<passedPoints.length;i++){
             if (pointA==passedPoints[i]) return false;
