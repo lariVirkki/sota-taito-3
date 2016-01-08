@@ -49,6 +49,7 @@ public class Draw extends Canvas{ // a better name is needed :DDD
                 //System.out.println("i="+i+" j="+j);
                 if(list[i][j]==null) break;
                 System.out.println("DRAWING "+Arrays.toString(list[i][j].getPosition()));
+                g.drawString("HP: "+list[i][j].getHP(), list[i][j].getPosition()[0]-50, list[i][j].getPosition()[1]-50);
                 g.drawImage(list[i][j].getSprite(), list[i][j].getPosition()[0]-list[i][j].getSize()/2+25, list[i][j].getPosition()[1]-list[i][j].getSize()/2+25, this); 
             }
         }

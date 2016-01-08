@@ -154,4 +154,8 @@ public class Unit {
     public int getAttack(){
         return this.attack;
     }
+    
+    public int getHP(){
+        return this.hp;
+    }
 }
