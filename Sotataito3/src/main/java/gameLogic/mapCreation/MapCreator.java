@@ -23,10 +23,9 @@ public final class MapCreator {
     */
     public static Map create(String file){
         if(!SanityCheck.isItSane(file)) return null;
-        RectangleCollection[] reclist=RectangleCollectionCreator.sortRectangles(RectangleCreator.getRectangles(file, new Rectangle[255]));
-        Ring[] ringlist=RingCreator.createRingList(reclist);
+        Rectangle[] reclist =RectangleCreator.getRectangles(file, new Rectangle[20000]);
         int[] dim=SanityCheck.dimensions(file);
-        return new Map(ringlist,reclist,new int[]{dim[0]*50,dim[1]*50,0,0},spawnPoint(file,'x'),spawnPoint(file,'y'));
+        return new Map(reclist,new int[]{dim[0]*50,dim[1]*50,0,0},spawnPoint(file,'x'),spawnPoint(file,'y'));
     }
     
     /**
@@ -44,6 +43,7 @@ public final class MapCreator {
                 break;
             }
         }
-        return new int[] {(index%rowLength)*50+25,(index/rowLength)*50+25};
+        System.out.println((index%rowLength)*50+" and "+(index/rowLength)*50);
+        return new int[] {(index%rowLength)*50,(index/rowLength)*50};
     }
 }

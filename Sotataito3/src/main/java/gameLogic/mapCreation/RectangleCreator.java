@@ -25,7 +25,7 @@ public final class RectangleCreator {
      * @param rectanglesSoFar passes the list of rectangles to other, private methods
      * @return Return rectangles found
      */
-    public static Rectangle[] getRectangles(String file, Rectangle[] rectanglesSoFar){
+    /*public static Rectangle[] getRectangles(String file, Rectangle[] rectanglesSoFar){
         int rowLength=0;
         while (true){
             if(file.charAt(rowLength)=='\n') break;
@@ -34,6 +34,7 @@ public final class RectangleCreator {
         rowLength++;
         return findRectangleBeginning(file,rowLength,rectanglesSoFar);
     }
+    */
     
     /**
      * Adds a rectangle to list
@@ -113,5 +114,32 @@ public final class RectangleCreator {
             row++;
         }
         return rectanglesSoFar;
+    }
+    
+    public static Rectangle[] getRectangles(String file, Rectangle[] rectanglesSoFar){
+        int top=50; int bottom=0;
+        int addIndex=0;
+        int rowLength=getRowLength(file);
+        for (int i=0;i<file.length();i++){
+            if (file.charAt(i)=='#'){
+                rectanglesSoFar[addIndex]=new Rectangle(top, bottom,(i%rowLength)*50,((i%rowLength)+1)*50);
+                System.out.println("["+top+"]["+bottom+"]["+(i%rowLength)*50+"]["+((i%rowLength)+1)*50+"]");
+                addIndex++;
+            }else if(file.charAt(i)=='\n'){
+                bottom=top;
+                top+=50;
+            }
+        }
+        return rectanglesSoFar;
+    }
+    
+    private static int getRowLength(String file){
+        int rowLength=0;
+        while (true){
+            if(file.charAt(rowLength)=='\n') break;
+            rowLength++;
+        }
+        rowLength++;
+        return rowLength;
     }
 }

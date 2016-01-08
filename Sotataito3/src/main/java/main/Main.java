@@ -3,70 +3,93 @@
  *  pls no copypasterino
  */
 package main;
+import gameInterface.Draw;
+import gameInterface.Refresher;
 import gameLogic.pathingLogic.Rectangle;
 import gameLogic.pathingLogic.RectangleCollection;
 import gameLogic.mapCreation.*;
 import gameLogic.pathingLogic.DoublyLinkedList;
 import gameLogic.pathingLogic.Map;
 import gameLogic.pathingLogic.TwoWayNode;
+import gameLogic.unitLogic.Game;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.Panel;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Arrays;
+import java.util.Timer;
 /**
  *
  * @author lari
  */
 public class Main {
-
+    static Game peli;
+    static Draw test;
     /**
      *
      * @param args
      */
-    public static void main(String[] args){
-        /* while(true){
-            isInWorksPositive();
-        }
-        */
-        //TwoWayNode node=new TwoWayNode(new int[255]);
-    //    DoublyLinkedList listOfLists=new DoublyLinkedList(node); //the list contained in this list will be
-    //    listOfLists.getFirst().getCoords()[0]=12;
-        //System.out.println(listOfLists.getFirst().getCoords()[0]);
-        /*
-        Rectangle rec = new Rectangle(100, 0, 0, 100);
-        int x=(int) (Math.random()*100);
-        int y=(int) (Math.random()*100);
-        if (x<=50) x+=-51;
-        if (x>50) x+=+50;
-        if (y>=50) y+=+51;
-        if (y<50) y+=-50;
-        int[] point=new int[]{x,y};
-        System.out.println(Arrays.toString(point));
-        System.out.println(rec.isItIn(point));
-
-
-        //junit.extensions.TestSetup.assertEquals( false, rec.isItIn(point));
-        String shah=".....\n.....\n.....\n.....\n.....\n.....\n";
-        System.out.println(shah);
-        System.out.println("-----------------------------------");
-        System.out.println(SanityCheck.linesAreOfUniformLength(shah, new int[]{6,6}));
-
-        
-        String file="##############.................\n" +
-                    "...............................\n" +
-                    "...............##..............\n" +
-                    "..y..........#####..........x..\n" +
-                    "...............##..............\n" +
-                    "...............................\n";
-        Map map=MapCreator.create(file);
-        int i=0;
-        RectangleCollection[] ayy=map.getUnPathable();
-        while(ayy[i]!=null){
-            System.out.println(ayy[i]);
-        }
-
-        */
-        
-        
+    public static void main(String[] args) throws InterruptedException{
+        preparation();
+        loopperiino(peli,test);
+        shah();
     }
     
+    static void preparation(){
+        String file="####################\n" +
+"#......##..........#\n" +
+"#......##..........#\n" +
+"#..x....#.....y....#\n" +
+"#......#...........#\n" +
+"#..................#\n" +
+"#..................#\n" +
+"#..................#\n" +
+"####################\n";
+        Map map=MapCreator.create(file);
+        peli=new Game(map);
+        test=new Draw(peli);
+        Frame window=new Frame();
+        //window.addMouseListener(new CustomMouseListener()); ADDED TO DRAW INSTEAD
         
+        window.setSize(test.getWidth(),test.getHeight());
+        
+        
+        
+        window.add(test);
+        
+        window.addWindowListener(new WindowAdapter() {
+         public void windowClosing(WindowEvent windowEvent){
+            System.exit(0);
+         }
+         });    
+        window.add(test);
+        window.setVisible(true);
+    }
+    
+    static void loopperiino(Game peli, Draw piirto) throws InterruptedException{
+        Timer ajastin=new Timer(true);
+        ajastin.scheduleAtFixedRate(peli, 0, 100);
+        ajastin.scheduleAtFixedRate(new Refresher(piirto), 0, 100);
+    }
+    
+    public static void wait (int n){
+        long t0,t1;
+        t0=System.currentTimeMillis();
+        do{
+        t1=System.currentTimeMillis();
+        }
+        while (t1-t0<n);
+    }
+    
+    static void shah(){
+        while (true){
+            wait(20);
+            test.repaint();
+        }        
+    }
+   
 }
 

@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public class Map {
  //   private Ring[] ringList;
-    private RectangleCollection[] unPathableList;
+    private Rectangle[] unPathableList;
     private int[] borders;
     private int[] spawnPoint1;
     private int[] spawnPoint2;
@@ -20,12 +20,38 @@ public class Map {
 // the patch of unpathable terrain reccolle[n]
     
     
-    public Map(Ring[] ring, RectangleCollection[] rec, int[] bd,int[] x, int[] y){
+    public Map(Rectangle[] rec, int[] bd,int[] x, int[] y){
 //        ringList=ring;
-        unPathableList=rec;
+        unPathableList=cleanRectangleList(rec);
         borders=bd;
         this.spawnPoint1=x;
         this.spawnPoint2=y;
+    }
+    
+    public int[] getBorders(){
+        return this.borders;
+    }
+    
+    public int[] getSpawnPoint(int i){
+        if (i==0) return spawnPoint1;
+        return spawnPoint2;
+    }
+    
+    public Rectangle[] getRectangles(){
+        return unPathableList;
+    }
+    
+    private Rectangle[] cleanRectangleList(Rectangle[] list){
+        int l=0;
+        for (int i=0;i<list.length;i++){
+            if (list[i]==null) break;
+            l++;
+        }
+        Rectangle[] output=new Rectangle[l];
+        for (int i=0;i<l;i++){
+            output[i]=list[i];
+        }
+        return output;
     }
     
     /**

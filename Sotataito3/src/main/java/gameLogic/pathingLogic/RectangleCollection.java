@@ -32,6 +32,10 @@ public class RectangleCollection {
         }
     }
     
+    public Rectangle[] getRectangles(){
+        return this.collection;
+    }
+    
     /**
      * checks if this collection covers a point
      * @param point

@@ -42,6 +42,20 @@ public class RectangeTest {
     }
     
     @Test
+    public void isInEXWorksNegative(){
+        Rectangle rec = new Rectangle(100, 0, 0, 100);
+        int x=(int) (Math.random()*100);
+        int y=(int) (Math.random()*100);
+        if (x<=50) x+=-51;
+        if (x>50) x+=+50;
+        if (y>=50) y+=+51;
+        if (y<50) y+=-50;
+        int[] point=new int[]{x,y};
+       // System.out.println(Arrays.toString(point));
+        junit.extensions.TestSetup.assertEquals( false, rec.isItIn(point));
+    }
+    
+    @Test
     public void lineCrossesPositiveY(){  //just to see if [0,0] works as a proper 'false'. this one goes through the Y-axis RANDOMS POORLY CHOSEN!!! 
         Rectangle rec= new Rectangle(1000,0,0,1000); 
         org.junit.Assert.assertEquals(false, Utility.isZeroPoint(rec.lineCrosses(new int[]{10000,100},new int[] {-300,500})));  
