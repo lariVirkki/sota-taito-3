@@ -18,31 +18,8 @@ public class RectangleCreatorTest {
         String map=".....\n..##.\n..##.\n.....\n.....\n";
         Rectangle [] ayy=mapCreationTest(map);
         String shah=print(ayy);
-        org.junit.Assert.assertEquals("[150, 200, 50, 100]",shah);
-    }
-    
-    @Test
-    public void testCorner(){
-        String map="..##\n..##\n....\n....\n";
-        Rectangle[] ayy=mapCreationTest(map);
-        String shah=print(ayy);
-        org.junit.Assert.assertEquals("[100, 200, 0, 100]",shah);
-    }
-    
-    @Test
-    public void testBlob(){
-        String map="......\n..###.\n.###..\n......\n";
-        Rectangle[] ayy=mapCreationTest(map);
-        String shah=print(ayy);
-        org.junit.Assert.assertEquals("[100, 250, 50, 100]" + "[150, 200, 100, 50]",shah);
-    }
-    
-    @Test
-    public void testMultiple(){
-        String map="..##\n..##\n##..\n##..\n";
-        Rectangle[] ayy=mapCreationTest(map);
-        String shah=print(ayy);
-        org.junit.Assert.assertEquals("[100, 200, 0, 100]" + "[200, 100, 100, 0]",shah);
+        System.out.println(shah);
+        org.junit.Assert.assertEquals("[100, 150, 50, 100][100, 200, 50, 150][150, 150, 100, 100][150, 200, 100, 150]",shah);
     }
     
     static Rectangle[] mapCreationTest(String map){
@@ -52,7 +29,7 @@ public class RectangleCreatorTest {
     
     static String print(Rectangle[] ayy){
         String output="";
-        for (int i=0; i<3;i++){
+        for (int i=0; i<ayy.length;i++){
             if (ayy[i]!=null){
                 output=output+ayy[i].toString();
             }else{

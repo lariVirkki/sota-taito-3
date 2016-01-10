@@ -14,6 +14,7 @@ import java.util.Arrays;
  * @author lari
  */
 public class Unit {
+    private boolean changed;
     private int hp;
     private int[] position;
     private int[] previousPosition;
@@ -46,6 +47,7 @@ public class Unit {
         this.size=size;
         command(new Job(1, new int[]{0,0}));
         parent=game;
+        changed=true; //has to start as true for it to be drawn
     }
     
     /**
@@ -53,16 +55,20 @@ public class Unit {
      * this method implements that and branches to whatever the current job commands
      */
     public void doIt(){
+        changed=false;
         System.out.println("doing it!");
         if (job.number()==1) hold();
         if (job.number()==2||job.number()==3) move(); //2=move, 3=move & attack
         if (job.number()==4) spawn();
     }
- 
+    
+    /**
+     * spawns a new unit, the blue guy
+     */
     public void spawn(){
         System.out.println("TRYING TO SPAWN");
         if(this.size==150){
-            parent.newUnit(new Unit(50, 10, 5, 0, 10.0, Utility.pointAddition(new int[]{0,this.size},this.position),350,Toolkit.getDefaultToolkit().getImage("blue_dude.png"),50,this.parent), this);
+            parent.newUnit(new Unit(50, 10, 5, 0, 10.0, Utility.pointAddition(new int[]{0,this.size/2+this.size/4},this.position),350,Toolkit.getDefaultToolkit().getImage("blue_dude.png"),50,this.parent), this);
         }
         job=this.commandQueue.pop();
         if (job==null){
@@ -70,8 +76,12 @@ public class Unit {
         }
     }
     
+    /**
+     * moves the unit to its previous position
+     */
     public void back(){
         position=previousPosition;
+        changed=false;
     }
     
     /**
@@ -120,6 +130,7 @@ public class Unit {
             this.command(new Job(1,new int[]{0,0}));
             System.out.println("ARRIVED!");
         }
+        changed=true;
     }
     
     /**
@@ -129,8 +140,14 @@ public class Unit {
         
     }
     
+    /**
+     * resolves getting attacked by Unit other
+     * @param other the attacking unit
+     * @return how much hp is left after taking the attack
+     */
     public int takeAttack(Unit other){
         this.hp-=other.getAttack()/(this.armor+1);
+        changed=true;
         return hp;
     }
     
@@ -157,5 +174,9 @@ public class Unit {
     
     public int getHP(){
         return this.hp;
+    }
+    
+    public boolean changed(){
+        return changed;
     }
 }

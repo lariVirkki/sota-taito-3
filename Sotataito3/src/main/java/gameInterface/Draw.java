@@ -49,8 +49,10 @@ public class Draw extends Canvas{ // a better name is needed :DDD
                 //System.out.println("i="+i+" j="+j);
                 if(list[i][j]==null) break;
                 System.out.println("DRAWING "+Arrays.toString(list[i][j].getPosition()));
-                g.drawString("HP: "+list[i][j].getHP(), list[i][j].getPosition()[0]-50, list[i][j].getPosition()[1]-50);
-                g.drawImage(list[i][j].getSprite(), list[i][j].getPosition()[0]-list[i][j].getSize()/2+25, list[i][j].getPosition()[1]-list[i][j].getSize()/2+25, this); 
+                g.drawString("HP: "+list[i][j].getHP(), list[i][j].getPosition()[0]-list[i][j].getSize()/2, list[i][j].getPosition()[1]-list[i][j].getSize()/2);
+                g.drawImage(list[i][j].getSprite(), 
+                        list[i][j].getPosition()[0]-list[i][j].getSize()/2, 
+                        list[i][j].getPosition()[1]-list[i][j].getSize()/2, this); 
             }
         }
     }
@@ -83,7 +85,7 @@ public class Draw extends Canvas{ // a better name is needed :DDD
     }
     
     public void trainCommand(){
-        if (selectedUnit!=null){
+        if (selectedUnit!=null&&selectedUnit[0]!=1){
             game.getUnits()[selectedUnit[0]][selectedUnit[1]].command(new Job(4,new int[]{0,0}));
             System.out.println("commanded");
         }

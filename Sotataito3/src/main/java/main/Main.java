@@ -5,21 +5,15 @@
 package main;
 import gameInterface.Draw;
 import gameInterface.Refresher;
-import gameLogic.pathingLogic.Rectangle;
-import gameLogic.pathingLogic.RectangleCollection;
 import gameLogic.mapCreation.*;
-import gameLogic.pathingLogic.DoublyLinkedList;
 import gameLogic.pathingLogic.Map;
-import gameLogic.pathingLogic.TwoWayNode;
+import gameLogic.pathingLogic.Rectangle;
 import gameLogic.unitLogic.Game;
-import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Frame;
-import java.awt.GridLayout;
-import java.awt.Panel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Timer;
 /**
  *
@@ -33,21 +27,45 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) throws InterruptedException{
-        preparation();
-        loopperiino(peli,test);
-        shah();
+        String file=".....\n..##.\n..##.\n.....\n.....\n";
+        System.out.println(print(RectangleCreator.getRectangles(file, new Rectangle[200])));
+        //preparation();
+        //runTheGame(peli,test);
+    }
+    
+    static String print(Rectangle[] ayy){
+        String output="";
+        for (int i=0; i<ayy.length;i++){
+            if (ayy[i]!=null){
+                output=output+ayy[i].toString();
+            }else{
+                break;
+            }
+        }
+        return output;
     }
     
     static void preparation(){
-        String file="####################\n" +
-"#......##..........#\n" +
-"#......##..........#\n" +
-"#..x....#.....y....#\n" +
-"#......#...........#\n" +
-"#..................#\n" +
-"#..................#\n" +
-"#..................#\n" +
-"####################\n";
+        String file="";
+        try{
+          FileReader inputFile = new FileReader("map.txt");
+
+          //Instantiate the BufferedReader Class
+          BufferedReader bufferReader = new BufferedReader(inputFile);
+
+          //Variable to hold the one line data
+          String line;
+
+          // Read file line by line and print on the console
+          while ((line = bufferReader.readLine()) != null)   {
+            file+=line+"\n";
+          }
+          //Close the buffer reader
+            bufferReader.close();
+        }catch(Exception e){
+            System.out.println("Error while reading file line by line:" + e.getMessage());                      
+        }
+        System.out.println(file);
         Map map=MapCreator.create(file);
         peli=new Game(map);
         test=new Draw(peli);
@@ -61,6 +79,7 @@ public class Main {
         window.add(test);
         
         window.addWindowListener(new WindowAdapter() {
+         @Override
          public void windowClosing(WindowEvent windowEvent){
             System.exit(0);
          }
@@ -69,26 +88,10 @@ public class Main {
         window.setVisible(true);
     }
     
-    static void loopperiino(Game peli, Draw piirto) throws InterruptedException{
+    static void runTheGame(Game peli, Draw piirto) throws InterruptedException{
         Timer ajastin=new Timer(true);
         ajastin.scheduleAtFixedRate(peli, 0, 100);
         ajastin.scheduleAtFixedRate(new Refresher(piirto), 0, 100);
-    }
-    
-    public static void wait (int n){
-        long t0,t1;
-        t0=System.currentTimeMillis();
-        do{
-        t1=System.currentTimeMillis();
-        }
-        while (t1-t0<n);
-    }
-    
-    static void shah(){
-        while (true){
-            wait(20);
-            test.repaint();
-        }        
     }
    
 }

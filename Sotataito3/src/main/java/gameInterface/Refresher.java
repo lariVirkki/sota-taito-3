@@ -7,7 +7,7 @@ package gameInterface;
 import java.util.TimerTask;
 
 /**
- *
+ * This class refreshes the screen when it is run.
  * @author lari
  */
 public class Refresher extends TimerTask{

@@ -22,10 +22,13 @@ public class Game extends TimerTask{  //this is the class that waits so everythi
     public Game(Map map){
         this.map=map;
         units=new Unit[2][500];
-        units[0][0]=new Unit(500, 10, 200, 0, 5.0, map.getSpawnPoint(0),350,Toolkit.getDefaultToolkit().getImage("blue_base.png"),150,this);
+        units[0][0]=new Unit(500, 10, 200, 0, 5.0, Utility.pointAddition(new int[]{0,-50}, map.getSpawnPoint(0)),350,Toolkit.getDefaultToolkit().getImage("blue_base.png"),150,this);
         units[1][0]=new Unit(500, 0, 0, 0, 0.0, map.getSpawnPoint(1),350,Toolkit.getDefaultToolkit().getImage("red_base.png"),150,this);
     }
-    
+    /**
+     * makes the units do as they are commanded to
+     * and then checks collision
+     */
     @Override
     public void run(){
         System.out.println("running the errands");
@@ -39,6 +42,9 @@ public class Game extends TimerTask{  //this is the class that waits so everythi
         collisionCheck();
     }
     
+    /**
+     * the first collision check just runs the checks for every unit
+     */
     public void collisionCheck(){
         for (int i=0;i<units.length;i++) {
             for (int j=0;j<units[i].length;j++) {
@@ -49,16 +55,21 @@ public class Game extends TimerTask{  //this is the class that waits so everythi
         }
     }
     
+    /**
+     * Checks against all other units, and commences attacks if unit1 collides with an enemy unit
+     * @param unit1 is the unit against which we check
+     * @param i i and j store the unit's identity
+     * @param j 
+     */
     public void collisionCheck(Unit unit1, int i, int j){
         for (int a=0;a<units.length;a++) {
             for (int b=0;b<units[a].length;b++) {
                 if (units[a][b]==null) break;
-                if (Utility.distance(unit1.getPosition(), units[a][b].getPosition())<Math.max(unit1.getSize(), units[a][b].getSize())&&!(a==i&&b==j)){
+                if (Utility.distance(unit1.getPosition(), units[a][b].getPosition())<
+                Math.max(unit1.getSize()/2, units[a][b].getSize()/2)&&!(a==i&&b==j)){
                     unit1.back();
                     units[a][b].back();
-                    System.out.println("COLLIDED");
                     if(a!=i){
-                        System.out.println("ATTACKING!! YAARRRR!!!!!");
                         if(unit1.takeAttack(units[a][b])<=0){
                             units[i][j]=null;
                         }
@@ -71,7 +82,12 @@ public class Game extends TimerTask{  //this is the class that waits so everythi
         }
     }
     
+    /**
+     * sees if the unit collides with static obstacles
+     * @param unit
+     */
     public void collisionCheck(Unit unit){
+        if(unit==null)return;
         Rectangle[] rec=map.getRectangles();
         int[] point=unit.getPosition();
         for (int i=0;i<rec.length;i++){
@@ -81,6 +97,11 @@ public class Game extends TimerTask{  //this is the class that waits so everythi
         }
     }
     
+    /**
+     * Adds a new unit to the units list
+     * @param addend the unit to be added
+     * @param creator passes the information of whose unit it is
+     */
     public void newUnit(Unit addend, Unit creator){
         System.out.println("got spawning command");
         int owner=0;
@@ -101,10 +122,6 @@ public class Game extends TimerTask{  //this is the class that waits so everythi
             }
         }
         System.out.println(this.toString());
-    }
-    
-    public void sendMessage(int index){
-        
     }
     
     //--------GETTERS-----------

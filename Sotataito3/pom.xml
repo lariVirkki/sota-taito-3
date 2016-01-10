@@ -42,10 +42,12 @@
                         <targetClasses>
                             <param>gameLogic.pathingLogic*</param>
                             <param>gameLogic.mapCreation*</param>
+                            <param>gameLogic.unitLogic*</param>
                         </targetClasses>
                     <targetTests>
                         <param>gameLogic.pathingLogic*</param>
                         <param>gameLogic.mapCreation*</param>
+                        <param>gameLogic.unitLogic*</param>
                     </targetTests>
                     </configuration>
                 </plugin>

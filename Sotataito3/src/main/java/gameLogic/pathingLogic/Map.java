@@ -41,6 +41,11 @@ public class Map {
         return unPathableList;
     }
     
+    /**
+     * the list is shortened so it hasn't nulls
+     * @param list
+     * @return 
+     */
     private Rectangle[] cleanRectangleList(Rectangle[] list){
         int l=0;
         for (int i=0;i<list.length;i++){
