@@ -21,14 +21,14 @@ import java.util.Timer;
  */
 public class Main {
     static Game peli;
-    static Draw test;
+    static Draw canvas;
     /**
      *
      * @param args
      */
     public static void main(String[] args) throws InterruptedException{
         preparation();
-        runTheGame(peli,test);
+        runTheGame(peli,canvas);
     }
     
     static String print(Rectangle[] ayy){
@@ -64,15 +64,15 @@ public class Main {
         }
         Map map=MapCreator.create(file);
         peli=new Game(map);
-        test=new Draw(peli);
+        canvas=new Draw(peli);
         Frame window=new Frame();
         //window.addMouseListener(new CustomMouseListener()); ADDED TO DRAW INSTEAD
         
-        window.setSize(test.getWidth(),test.getHeight());
+        window.setSize(canvas.getWidth(),canvas.getHeight());
         
         
         
-        window.add(test);
+        window.add(canvas);
         
         window.addWindowListener(new WindowAdapter() {
          @Override
@@ -80,7 +80,6 @@ public class Main {
             System.exit(0);
          }
          });    
-        window.add(test);
         window.setVisible(true);
     }
     

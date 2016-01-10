@@ -29,3 +29,11 @@ Pathing valmiiksi, karttaolion luomisen aloittaminen
 28.12.2015
 5h
 Kartanteon ensimmäinen osa valmiiksi
+
+8.1.2016
+10h
+demo valmiiksi
+
+10.1.2016
+4h
+projekti palautettavaan muotoon
