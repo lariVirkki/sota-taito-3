@@ -80,7 +80,6 @@ public final class RectangleCreator {
             b+=rowLength;
             e+=rowLength;
         }
-        //System.out.print("b = "+b);
         int top=e/rowLength-1;
         
         int right=e%rowLength;
@@ -100,7 +99,6 @@ public final class RectangleCreator {
         boolean started=false;
         while ((row+1)*rowLength<=file.length()){ //no array out of bounds, pls
             for (int i=row*rowLength;i<(row+1)*rowLength;i++){ //i starts out as the first in row, and ends up being the newline character
-                //System.out.print(file.charAt(i));  //debug code
                 if (file.charAt(i)=='#'&&!started){
                     unpathableStart=i;
                     started=true;
@@ -123,7 +121,6 @@ public final class RectangleCreator {
         for (int i=0;i<file.length();i++){
             if (file.charAt(i)=='#'){
                 rectanglesSoFar[addIndex]=new Rectangle(top, bottom,(i%rowLength)*50,((i%rowLength)+1)*50);
-                System.out.println("["+top+"]["+bottom+"]["+(i%rowLength)*50+"]["+((i%rowLength)+1)*50+"]");
                 addIndex++;
             }else if(file.charAt(i)=='\n'){
                 bottom=top;

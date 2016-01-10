@@ -58,8 +58,6 @@ public final class SanityCheck {
      */
     public static boolean linesAreOfUniformLength(String file, int[] dimensions){  //bugged!!!!
         for (int i=dimensions[0]-1;i<file.length();i+=dimensions[0]){  //width x height
-            //System.out.println("i = "+i);
-            //System.out.println("width = "+dimensions[0]);
             if (file.charAt(i)!='\n') return false;
         }
         return true;

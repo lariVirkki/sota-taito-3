@@ -31,7 +31,6 @@ public final class RingCreator {
         for (int i=0; i<inputPoints.length;i++){  //iterates over the set of rectangles
             for(int j=0; j<=3;j++){  //this for iterates over one set of corner points
                 if(!Utility.isZeroPoint(inputPoints[i][j])){
-                    //System.out.println("OUTER POINT! "+Arrays.toString(inputPoints[i][j])); //now outer points are found correctly!
                     switch(j){
                         case 0: change=new int[]{-25,25};
                                 break;
@@ -50,7 +49,6 @@ public final class RingCreator {
                 }
             }
         }
-        System.out.println("getOuterPoints OUTPUT[0]: "+Arrays.toString(output[0])); //output flawed even though 
         return output;
     }
     
@@ -59,10 +57,8 @@ public final class RingCreator {
     }
     
     private static Ring createRing(int[][] points){ //the points aren't in order
-        System.out.println("createRing reporting!! points[0] is "+Arrays.toString(points[0]));
         Ring output=new Ring(new TwoWayNode(points[0]));
         for (int i=1;i<points.length;i++){
-            System.out.println("createRing reporting!! points["+i+"] is "+Arrays.toString(points[i]));
             if(Utility.isZeroPoint(points[i])) break;
             //and for some retarded reason, every point after 0 is just [0,0]
             if(Utility.isZeroPoint(points[i+1])){

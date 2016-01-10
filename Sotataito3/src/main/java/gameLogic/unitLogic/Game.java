@@ -31,11 +31,9 @@ public class Game extends TimerTask{  //this is the class that waits so everythi
      */
     @Override
     public void run(){
-        System.out.println("running the errands");
         for (int i=0;i<2;i++){
             for (int j=0; j<units[i].length;j++){
                 if (units[i][j]==null) break;
-                System.out.println("making them do it");
                 units[i][j].doIt();
             }
         }
@@ -103,7 +101,6 @@ public class Game extends TimerTask{  //this is the class that waits so everythi
      * @param creator passes the information of whose unit it is
      */
     public void newUnit(Unit addend, Unit creator){
-        System.out.println("got spawning command");
         int owner=0;
         for (int i=0;i<units.length;i++){
             for (int j=0;j<units[i].length;j++){
@@ -116,12 +113,10 @@ public class Game extends TimerTask{  //this is the class that waits so everythi
         }
         for (int j=0;j<units[owner].length;j++){
             if(units[owner][j]==null){
-                System.out.println("ADDING!!!");
                 units[owner][j]=addend;
                 break;
             }
         }
-        System.out.println(this.toString());
     }
     
     //--------GETTERS-----------

@@ -18,7 +18,6 @@ public class RectangleCreatorTest {
         String map=".....\n..##.\n..##.\n.....\n.....\n";
         Rectangle [] ayy=mapCreationTest(map);
         String shah=print(ayy);
-        System.out.println(shah);
         org.junit.Assert.assertEquals("[100, 150, 50, 100][100, 200, 50, 150][150, 150, 100, 100][150, 200, 100, 150]",shah);
     }
     

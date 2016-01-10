@@ -46,9 +46,7 @@ public class Draw extends Canvas{ // a better name is needed :DDD
         Unit[][] list=game.getUnits();
         for (int i=0;i<2;i++){
             for (int j=0; j<list[i].length;j++){
-                //System.out.println("i="+i+" j="+j);
                 if(list[i][j]==null) break;
-                System.out.println("DRAWING "+Arrays.toString(list[i][j].getPosition()));
                 g.drawString("HP: "+list[i][j].getHP(), list[i][j].getPosition()[0]-list[i][j].getSize()/2, list[i][j].getPosition()[1]-list[i][j].getSize()/2);
                 g.drawImage(list[i][j].getSprite(), 
                         list[i][j].getPosition()[0]-list[i][j].getSize()/2, 
@@ -70,7 +68,6 @@ public class Draw extends Canvas{ // a better name is needed :DDD
                 if (game.getUnits()[i][j]==null) break;
                 if (Utility.distance(point, game.getUnits()[i][j].getPosition())<game.getUnits()[i][j].getSize()){
                     selectedUnit=new int[]{i,j};
-                    System.out.println("selected");
                     break;
                 }
             }
@@ -80,14 +77,12 @@ public class Draw extends Canvas{ // a better name is needed :DDD
     public void moveCommand(int[] target){
         if (selectedUnit!=null){
             game.getUnits()[selectedUnit[0]][selectedUnit[1]].command(new Job(2,target));
-            System.out.println("commanded");
         }
     }
     
     public void trainCommand(){
         if (selectedUnit!=null&&selectedUnit[0]!=1){
             game.getUnits()[selectedUnit[0]][selectedUnit[1]].command(new Job(4,new int[]{0,0}));
-            System.out.println("commanded");
         }
     }
     
@@ -134,7 +129,7 @@ public class Draw extends Canvas{ // a better name is needed :DDD
         @Override
         public void keyTyped(KeyEvent ke) {
             switch (ke.getKeyChar()){
-                case 'T':
+                case 't':
                     trainCommand();
             }
         }

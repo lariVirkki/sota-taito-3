@@ -38,12 +38,9 @@ public class Rectangle {
      * @return 
      */
     public int[] lineCrosses(int[] startPoint, int[] endPoint){ //bug most likely here
-        //System.out.println("ENTERED A LINE CROSSES test on rectangle");
         int[] output = new int[]{0,0};
         for (int i =0; i<theLines.length; i++){
-            //System.out.println("heading for test on line number "+i+"\nThe line is "+Arrays.toString(theLines[i].getStartPoint())+Arrays.toString(theLines[i].getEndPoint()));
             int[] point = theLines[i].lineCrosses(startPoint, endPoint);
-            //System.out.println("now crossing point is "+Arrays.toString(point));
             if (!Utility.isZeroPoint(point)){
                 if(Utility.isZeroPoint(output)){
                     output=point;
@@ -106,7 +103,6 @@ public class Rectangle {
     
     @Override
     public String toString(){
-              System.out.println("here");
         return Arrays.toString(this.getCoords());
     }
     

@@ -52,7 +52,6 @@ public final class RectangleCollectionCreator {
                 list[blobNumber].add(rectangleList[i]);
             }
         }
-        System.out.println("RECTANGLE COLLECTION CREATOR returning "+Arrays.toString(list));
         // blobs don't come out as blobs... instead, every rectangle is in its own collection...
         return list;
     }

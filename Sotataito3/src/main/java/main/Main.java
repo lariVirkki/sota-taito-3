@@ -27,10 +27,8 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) throws InterruptedException{
-        String file=".....\n..##.\n..##.\n.....\n.....\n";
-        System.out.println(print(RectangleCreator.getRectangles(file, new Rectangle[200])));
-        //preparation();
-        //runTheGame(peli,test);
+        preparation();
+        runTheGame(peli,test);
     }
     
     static String print(Rectangle[] ayy){
@@ -63,9 +61,7 @@ public class Main {
           //Close the buffer reader
             bufferReader.close();
         }catch(Exception e){
-            System.out.println("Error while reading file line by line:" + e.getMessage());                      
         }
-        System.out.println(file);
         Map map=MapCreator.create(file);
         peli=new Game(map);
         test=new Draw(peli);

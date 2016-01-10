@@ -54,7 +54,6 @@ public class DoublyLinkedList {
         String output="";
         do{
             output=output+node.toString();
-            //System.out.println(output);
             if(node.getNext()==null) break;
             node=node.getNext();
         }while(true);

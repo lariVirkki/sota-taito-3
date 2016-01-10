@@ -92,7 +92,6 @@ public class Map {
      * @return {0,0} if nothing is in the way, else, the point where collision would happen if you moved straight from start to finish
      */
     public int[] unPathableInTheWay(int[] startPoint, int[] endPoint){  //sees if there is unpathable terrain between two points in plane, returns 0,0 if none
-        //System.out.println("ENTERED UNPATHABLEINTHEWAY");
         int[] output = new int[2];
         output[0]=0; output[1]=0;
         for (int i =0; i<unPathableList.length; i++){
@@ -106,7 +105,6 @@ public class Map {
                 }
             }
         }
-        //System.out.println("Returning "+Arrays.toString(output));
         return output;
     }
     

@@ -56,7 +56,6 @@ public class Unit {
      */
     public void doIt(){
         changed=false;
-        System.out.println("doing it!");
         if (job.number()==1) hold();
         if (job.number()==2||job.number()==3) move(); //2=move, 3=move & attack
         if (job.number()==4) spawn();
@@ -66,7 +65,6 @@ public class Unit {
      * spawns a new unit, the blue guy
      */
     public void spawn(){
-        System.out.println("TRYING TO SPAWN");
         if(this.size==150){
             parent.newUnit(new Unit(50, 10, 5, 0, 10.0, Utility.pointAddition(new int[]{0,this.size/2+this.size/4},this.position),350,Toolkit.getDefaultToolkit().getImage("blue_dude.png"),50,this.parent), this);
         }
@@ -90,7 +88,6 @@ public class Unit {
      * @param job 
      */
     public void command(Job job){
-        System.out.println("command accepted");
         commandQueue.flush();
         commandQueue.push(job);
         this.job=commandQueue.pop();
@@ -117,7 +114,6 @@ public class Unit {
      * collision problems will likely be solved in Game
      */
     private void move(){
-        System.out.println("MOVING!");
         double x; double y;
         //DoublyLinkedList path = map. maybe a path should be given??
         x=(((double)(job.getTarget()[0]-this.position[0]))/Utility.distance(this.position, job.getTarget()));
@@ -125,10 +121,8 @@ public class Unit {
         int[] shah = new int[]{(int)Math.floor(x*movespeed),(int)Math.floor(y*movespeed)};
         previousPosition=position;
         this.position=Utility.pointAddition(position, shah);
-        System.out.println(Arrays.toString(this.getPosition()));
         if (Utility.distance(job.getTarget(), position)<50){
             this.command(new Job(1,new int[]{0,0}));
-            System.out.println("ARRIVED!");
         }
         changed=true;
     }

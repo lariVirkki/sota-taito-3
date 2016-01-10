@@ -43,7 +43,6 @@ public final class MapCreator {
                 break;
             }
         }
-        System.out.println((index%rowLength)*50+" and "+(index/rowLength)*50);
         return new int[] {(index%rowLength)*50,(index/rowLength)*50};
     }
 }

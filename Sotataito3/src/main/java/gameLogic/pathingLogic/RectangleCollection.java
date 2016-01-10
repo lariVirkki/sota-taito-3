@@ -83,13 +83,10 @@ public class RectangleCollection {
     public int[] lineCrosses(int[] startPoint, int[] endPoint){
         int[] output = new int[]{0,0};
         for (int i =0; i<collection.length; i++){
-            //System.out.println("this is iteration number "+i);
             if (collection[i]==null){
-                //System.out.println("recColle cross broke at i="+i);
                 break;
             } //null breakers are necessary :DD
             int[] point = collection[i].lineCrosses(startPoint, endPoint);
-            //System.out.println("Point found is: "+Arrays.toString(point)); //this point isn't reached at all??
             if (!Utility.isZeroPoint(point)){
                 if(Utility.isZeroPoint(output)){
                     output=point;
